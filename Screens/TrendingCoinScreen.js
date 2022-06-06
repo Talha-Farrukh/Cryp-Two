@@ -14,10 +14,11 @@ import CoinListItems from "../Components/CoinListItems";
 import PortfolioHeader from "../Components/PortfolioHeader";
 import { TrendingCoins } from "../config/api";
 import { CryptoState } from "../CryptoContext";
+import { darkColor, lightColor } from "../Colors";
 
 const TrendingCoinScreen = () => {
   const [trendingCoins, setTrendingCoins] = useState();
-  const { currency } = CryptoState();
+  const { currency, theme } = CryptoState();
 
   const fetch = async () => {
     const { data } = await axios.get(TrendingCoins(currency));
@@ -29,20 +30,52 @@ const TrendingCoinScreen = () => {
   }, [currency]);
 
   return (
-    <LinearGradient colors={["#236AF3", "#1559E0"]} style={styles.container}>
+    <View
+      style={[
+        styles.container,
+        {
+          backgroundColor:
+            theme === "light"
+              ? lightColor.headerBackground
+              : darkColor.headerBackground,
+        },
+      ]}
+    >
       <SafeAreaView>
         {/* <PortfolioHeader /> */}
-        <View style={styles.body}>
+        <View
+          style={[
+            styles.body,
+            {
+              backgroundColor:
+                theme === "light"
+                  ? lightColor.background
+                  : darkColor.background,
+            },
+          ]}
+        >
           <View style={styles.bodyTop}>
             <Text
               style={{
                 fontSize: 18,
+                color:
+                  theme === "light"
+                    ? lightColor.fontColor
+                    : darkColor.fontColor,
               }}
             >
               Trending
             </Text>
           </View>
-          <View style={{ height: "70%" }}>
+          <View
+            style={{
+              height: "72%",
+              backgroundColor:
+                theme === "light"
+                  ? lightColor.background
+                  : darkColor.background,
+            }}
+          >
             <ScrollView
               showsVerticalScrollIndicator={false}
               // refreshControl={
@@ -58,7 +91,7 @@ const TrendingCoinScreen = () => {
           </View>
         </View>
       </SafeAreaView>
-    </LinearGradient>
+    </View>
   );
 };
 

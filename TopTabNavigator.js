@@ -1,5 +1,7 @@
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { Platform } from "react-native";
+import { darkColor, lightColor } from "./Colors";
+import { CryptoState } from "./CryptoContext";
 import CoinListScreen from "./Screens/CoinListScreen";
 import ExperimentalScreen from "./Screens/ExperimentalScreen";
 import TrendingCoinScreen from "./Screens/TrendingCoinScreen";
@@ -7,6 +9,7 @@ import TrendingCoinScreen from "./Screens/TrendingCoinScreen";
 const Tab = createMaterialTopTabNavigator();
 
 export default function TopTabNavigator() {
+  const { theme } = CryptoState();
   return (
     <Tab.Navigator
       screenOptions={{
@@ -19,7 +22,10 @@ export default function TopTabNavigator() {
           backgroundColor: "transparent",
         },
         tabBarIndicatorStyle: {
-          backgroundColor: "hsl(220, 95%, 65%)",
+          backgroundColor:
+            theme === "light"
+              ? lightColor.tabBarIndicator
+              : darkColor.tabBarIndicator,
           height: "80%",
           marginBottom: "1%",
           borderRadius: 20,

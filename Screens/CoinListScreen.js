@@ -14,6 +14,7 @@ import {
   RefreshControl,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { darkColor, lightColor } from "../Colors";
 import CoinListItems from "../Components/CoinListItems";
 import CoinScrollListItems from "../Components/CoinScrollListItems";
 import PortfolioHeader from "../Components/PortfolioHeader";
@@ -46,17 +47,50 @@ const CoinListScreen = () => {
   if (!loaded) {
     return null;
   }
+  const { theme } = CryptoState();
 
   return (
-    <LinearGradient colors={["#236AF3", "#1559E0"]} style={styles.container}>
-      <StatusBar backgroundColor="#236AF3" style="light" animated />
+    <View
+      style={[
+        styles.container,
+        {
+          backgroundColor:
+            theme === "light"
+              ? lightColor.headerBackground
+              : darkColor.headerBackground,
+        },
+      ]}
+    >
+      <StatusBar
+        backgroundColor={
+          theme === "light"
+            ? lightColor.headerBackground
+            : darkColor.headerBackground
+        }
+        style="light"
+        animated
+      />
       <SafeAreaView>
         <PortfolioHeader />
-        <View style={styles.body}>
+        <View
+          style={[
+            styles.body,
+            {
+              backgroundColor:
+                theme === "light"
+                  ? lightColor.background
+                  : darkColor.background,
+            },
+          ]}
+        >
           <View style={styles.bodyTop}>
             <Text
               style={{
                 fontSize: 18,
+                color:
+                  theme === "light"
+                    ? lightColor.fontColor
+                    : darkColor.fontColor,
               }}
             >
               Assets
@@ -66,7 +100,13 @@ const CoinListScreen = () => {
             //   refresh ? setRefresh(false) : setRefresh(true);
             // }}
             >
-              <AntDesign name="plus" size={24} color="black" />
+              <AntDesign
+                name="plus"
+                size={24}
+                color={
+                  theme === "light" ? lightColor.fontColor : darkColor.fontColor
+                }
+              />
             </TouchableOpacity>
           </View>
           <View style={{ height: Platform.OS === "android" ? "33%" : "35%" }}>
@@ -90,6 +130,10 @@ const CoinListScreen = () => {
               <Text
                 style={{
                   fontSize: 18,
+                  color:
+                    theme === "light"
+                      ? lightColor.fontColor
+                      : darkColor.fontColor,
                 }}
               >
                 Recommend to Buy
@@ -110,7 +154,7 @@ const CoinListScreen = () => {
           )}
         </View>
       </SafeAreaView>
-    </LinearGradient>
+    </View>
   );
 };
 
@@ -122,7 +166,7 @@ const styles = StyleSheet.create({
   },
   body: {
     height: "100%",
-    backgroundColor: "#ffff",
+    // backgroundColor: "#ffff",
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
   },
