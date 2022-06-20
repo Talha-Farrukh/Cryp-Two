@@ -5,14 +5,36 @@ import { LinearGradient } from "expo-linear-gradient";
 import { Platform } from "react-native";
 import SelectDropdown from "react-native-select-dropdown";
 import { AntDesign } from "@expo/vector-icons";
-import { Divider } from "react-native-paper";
+import { Divider, Switch } from "react-native-paper";
 import { CryptoState } from "../CryptoContext";
+import { useEffect } from "react";
+import { darkColor, lightColor } from "../Colors";
 
 const SettingScreen = () => {
   const { currency, setCurrency } = CryptoState();
   const data = ["usd", "pkr"];
+  const { theme, setTheme } = CryptoState();
+  const [isEnabled, setIsEnabled] = React.useState(false);
+  useEffect(() => {
+    console.log(theme);
+  }, [isEnabled]);
+
+  const onToggle = () => {
+    setIsEnabled(!isEnabled);
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
   return (
-    <LinearGradient colors={["#236AF3", "#1559E0"]} style={styles.container}>
+    <View
+      style={[
+        styles.container,
+        {
+          backgroundColor:
+            theme === "light"
+              ? lightColor.headerBackground
+              : darkColor.headerBackground,
+        },
+      ]}
+    >
       <SafeAreaView>
         <View>
           <Text
@@ -26,9 +48,27 @@ const SettingScreen = () => {
             Settings
           </Text>
         </View>
-        <View style={styles.body}>
+        <View
+          style={[
+            styles.body,
+            {
+              backgroundColor:
+                theme === "light"
+                  ? lightColor.background
+                  : darkColor.background,
+            },
+          ]}
+        >
           <View style={styles.bodyTop}>
-            <Text style={{ fontSize: Platform.OS === "android" ? 17 : 14 }}>
+            <Text
+              style={{
+                fontSize: Platform.OS === "android" ? 17 : 14,
+                color:
+                  theme === "light"
+                    ? lightColor.fontColor
+                    : darkColor.fontColor,
+              }}
+            >
               Set Currency
             </Text>
             <SelectDropdown
@@ -61,10 +101,39 @@ const SettingScreen = () => {
               }}
             />
           </View>
-          <Divider />
+          <Divider
+            style={{
+              width: "90%",
+              alignSelf: "center",
+              backgroundColor:
+                theme === "light" ? lightColor.fontColor : darkColor.fontColor,
+            }}
+          />
+          <View style={styles.bodyTop}>
+            <Text
+              style={{
+                fontSize: Platform.OS === "android" ? 17 : 14,
+                color:
+                  theme === "light"
+                    ? lightColor.fontColor
+                    : darkColor.fontColor,
+              }}
+            >
+              Set Theme
+            </Text>
+            <Switch onValueChange={onToggle} value={isEnabled} />
+          </View>
+          <Divider
+            style={{
+              width: "90%",
+              alignSelf: "center",
+              backgroundColor:
+                theme === "light" ? lightColor.fontColor : darkColor.fontColor,
+            }}
+          />
         </View>
       </SafeAreaView>
-    </LinearGradient>
+    </View>
   );
 };
 

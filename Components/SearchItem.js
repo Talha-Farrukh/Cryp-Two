@@ -1,9 +1,10 @@
 import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
+import { darkColor, lightColor } from "../Colors";
 import { CryptoState } from "../CryptoContext";
 
 const SearchItem = (props) => {
-  const { symbol } = CryptoState();
+  const { symbol, theme } = CryptoState();
   return (
     <>
       <View style={styles.container} key={props.index}>
@@ -16,25 +17,58 @@ const SearchItem = (props) => {
             style={styles.coinImage}
           />
           <View style={{ paddingHorizontal: 10 }}>
-            <Text style={styles.text}>{props.name}</Text>
+            <Text
+              style={[
+                styles.text,
+                {
+                  color:
+                    theme === "light"
+                      ? lightColor.fontColor
+                      : darkColor.fontColor,
+                },
+              ]}
+            >
+              {props.name}
+            </Text>
             <View style={{ flexDirection: "row", alignItems: "center" }}>
               <View
               // style={styles.underText}
               >
                 <Text
-                //  style={{ color: "white" }}
+                  //  style={{ color: "white" }}
+                  style={{
+                    color:
+                      theme === "light"
+                        ? lightColor.fontColor
+                        : darkColor.fontColor,
+                  }}
                 >
                   {props.rank + " "}
                 </Text>
               </View>
-              <Text style={{ fontSize: 11, fontWeight: "bold" }}>
+              <Text
+                style={{
+                  fontSize: 11,
+                  fontWeight: "bold",
+                  color:
+                    theme === "light"
+                      ? lightColor.fontColor
+                      : darkColor.fontColor,
+                }}
+              >
                 {props.symbol.toUpperCase()}
               </Text>
             </View>
           </View>
         </View>
         <View>
-          <Text style={{ textAlign: "right" }}>
+          <Text
+            style={{
+              textAlign: "right",
+              color:
+                theme === "light" ? lightColor.fontColor : darkColor.fontColor,
+            }}
+          >
             {symbol === "$" ? symbol : symbol + " "}
             {props.price.toFixed(0)}
           </Text>
@@ -45,6 +79,10 @@ const SearchItem = (props) => {
                 paddingRight: 5,
                 textAlign: "right",
                 opacity: 0.4,
+                color:
+                  theme === "light"
+                    ? lightColor.fontColor
+                    : darkColor.fontColor,
               }}
             >
               {props.priceChange >= 0

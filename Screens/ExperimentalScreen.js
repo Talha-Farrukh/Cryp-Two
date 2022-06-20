@@ -12,6 +12,7 @@ import {
   View,
 } from "react-native";
 import { Searchbar } from "react-native-paper";
+import { darkColor, lightColor } from "../Colors";
 import CoinItem from "../Components/SearchItem";
 import { CoinList } from "../config/api";
 import { CryptoState } from "../CryptoContext";
@@ -20,7 +21,7 @@ const ExperimentalScreen = () => {
   const Navigation = useNavigation();
   const [coins, setCoins] = useState();
   const [search, setSearch] = useState();
-  const { currency } = CryptoState();
+  const { currency, theme } = CryptoState();
   const fetchCoins = async () => {
     const { data } = await axios.get(CoinList(currency));
     setCoins(data);
@@ -38,12 +39,21 @@ const ExperimentalScreen = () => {
     );
   };
   return (
-    <LinearGradient colors={["#236AF3", "#236AF3"]} style={{ flex: 1 }}>
+    <View
+      style={{
+        flex: 1,
+        backgroundColor:
+          theme === "light"
+            ? lightColor.headerBackground
+            : darkColor.headerBackground,
+      }}
+    >
       <SafeAreaView>
         <View>
           <Text
             style={{
-              color: "#ffff",
+              color:
+                theme === "light" ? lightColor.fontColor : darkColor.fontColor,
               paddingVertical: 35,
               fontSize: Platform.OS === "android" ? 20 : 16,
               alignSelf: "center",
@@ -54,7 +64,8 @@ const ExperimentalScreen = () => {
         <View
           style={{
             height: "100%",
-            backgroundColor: "white",
+            backgroundColor:
+              theme === "light" ? lightColor.background : darkColor.background,
             paddingHorizontal: 20,
             paddingTop: 20,
             paddingBottom: 20,
@@ -70,7 +81,10 @@ const ExperimentalScreen = () => {
           <ScrollView
             style={{
               height: "91%",
-              backgroundColor: "white",
+              backgroundColor:
+                theme === "light"
+                  ? lightColor.background
+                  : darkColor.background,
               paddingTop: 10,
               paddingBottom: 20,
               marginTop: 10,
@@ -112,7 +126,7 @@ const ExperimentalScreen = () => {
           </ScrollView>
         </View>
       </SafeAreaView>
-    </LinearGradient>
+    </View>
   );
 };
 

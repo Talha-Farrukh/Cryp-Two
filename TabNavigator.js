@@ -4,14 +4,22 @@ import CoinListScreen from "./Screens/CoinListScreen";
 import SettingScreen from "./Screens/SettingScreen";
 import { Foundation, Ionicons } from "@expo/vector-icons";
 import TopTabNavigator from "./TopTabNavigator";
+import { CryptoState } from "./CryptoContext";
+import { darkColor, lightColor } from "./Colors";
 
 const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => {
+  const { theme } = CryptoState();
   return (
     <Tab.Navigator
       screenOptions={{
         tabBarShowLabel: false,
+        tabBarStyle: {
+          backgroundColor:
+            theme === "light" ? lightColor.background : darkColor.background,
+          borderTopColor: "transparent",
+        },
         // tabBarHideOnKeyboard: true,
       }}
     >
@@ -28,7 +36,15 @@ const TabNavigator = () => {
               <Foundation
                 name="home"
                 size={24}
-                color={tabInfo.focused ? "#236AF3" : "rgba(29, 28, 28, 0.5)"}
+                color={
+                  theme === "light"
+                    ? "rgba(29, 28, 28, 0.5)" && tabInfo.focused
+                      ? lightColor.tabBarIndicator
+                      : "rgba(29, 28, 28, 0.5)"
+                    : "white" && tabInfo.focused
+                    ? darkColor.fontColor
+                    : darkColor.tabBarIndicator
+                }
               />
             );
           },
@@ -43,7 +59,15 @@ const TabNavigator = () => {
               <Ionicons
                 name="settings"
                 size={24}
-                color={tabInfo.focused ? "#236AF3" : "rgba(29, 28, 28, 0.5)"}
+                color={
+                  theme === "light"
+                    ? "rgba(29, 28, 28, 0.5)" && tabInfo.focused
+                      ? lightColor.tabBarIndicator
+                      : "rgba(29, 28, 28, 0.5)"
+                    : "white" && tabInfo.focused
+                    ? darkColor.fontColor
+                    : darkColor.tabBarIndicator
+                }
               />
             );
           },
