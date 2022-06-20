@@ -95,12 +95,12 @@ const CoinListScreen = () => {
               Assets
             </Text>
             <TouchableOpacity
-            // onPress={() => {
-            //   refresh ? setRefresh(false) : setRefresh(true);
-            // }}
+              onPress={() => {
+                fetchCoins();
+              }}
             >
               <AntDesign
-                name="plus"
+                name="reload1"
                 size={24}
                 color={
                   theme === "light" ? lightColor.fontColor : darkColor.fontColor
