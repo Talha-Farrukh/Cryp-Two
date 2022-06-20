@@ -8,14 +8,10 @@ import { darkColor, lightColor } from "../Colors";
 import { CryptoState } from "../CryptoContext";
 
 const SettingScreen = () => {
-  const { currency, setCurrency } = CryptoState();
-  const data = ["usd", "pkr"];
+  const { setCurrency } = CryptoState();
+  const data = ["usd", "pkr", "inr", "eur", "gbp", "cad", "aud", "cny"];
   const { theme, setTheme } = CryptoState();
   const [isEnabled, setIsEnabled] = React.useState(false);
-  useEffect(() => {
-    console.log(theme);
-  }, [isEnabled]);
-
   const onToggle = () => {
     setIsEnabled(!isEnabled);
     setTheme(theme === "dark" ? "light" : "dark");

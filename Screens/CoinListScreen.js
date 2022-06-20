@@ -24,18 +24,12 @@ const CoinListScreen = () => {
   const [coins, setCoins] = useState();
   const [refresh, setRefresh] = useState(false);
   const { currency } = CryptoState();
-
   const fetchCoins = async () => {
     setRefresh(true);
     const { data } = await axios.get(CoinList(currency));
     setCoins(data);
     setRefresh(false);
   };
-  // const refreshCoins = () => {
-  //   setCoins();
-  //   fetchCoins();
-  // };
-
   useEffect(() => {
     fetchCoins();
   }, [currency]);

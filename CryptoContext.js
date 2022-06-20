@@ -10,6 +10,13 @@ function CryptoContext({ children }) {
   useEffect(() => {
     if (currency === "pkr") setSymbol("Rs");
     else if (currency === "usd") setSymbol("$");
+    else if (currency === "inr") setSymbol("₹");
+    else if (currency === "eur") setSymbol("€");
+    else if (currency === "gbp") setSymbol("£");
+    else if (currency === "cad") setSymbol("$");
+    else if (currency === "aud") setSymbol("$");
+    else if (currency === "brl") setSymbol("R$");
+    else if (currency === "cny") setSymbol("¥");
   }, [currency]);
 
   return (

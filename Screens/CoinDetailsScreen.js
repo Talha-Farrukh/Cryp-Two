@@ -323,18 +323,17 @@ const CoinDetailsScreen = () => {
             paddingBottom: 30,
           }}
         >
-          <Button
-            color={
-              theme === "light"
-                ? lightColor.tabBarIndicator
-                : darkColor.tabBarIndicator
-            }
+          <TouchableOpacity
             mode="contained"
             style={{
               borderRadius: 25,
-              paddingHorizontal: 25,
-              paddingVertical: 3,
+              paddingHorizontal: 35,
+              paddingVertical: 10,
               maxHeight: 60,
+              backgroundColor:
+                theme === "light"
+                  ? lightColor.tabBarIndicator
+                  : darkColor.tabBarIndicator,
             }}
           >
             <View
@@ -352,16 +351,16 @@ const CoinDetailsScreen = () => {
               />
               <Text
                 style={{
-                  color:
-                    theme === "light"
-                      ? darkColor.fontColor
-                      : darkColor.fontColor,
+                  color: "white",
+                  // theme === "light"
+                  //   ? lightColor.fontColor
+                  //   : darkColor.fontColor,
                 }}
               >
                 Add to Portfolio
               </Text>
             </View>
-          </Button>
+          </TouchableOpacity>
           <Button
             color="#F9F9F9"
             mode="contained"
