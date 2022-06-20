@@ -1,8 +1,7 @@
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { AntDesign, MaterialCommunityIcons } from "@expo/vector-icons";
 import { useRoute } from "@react-navigation/native";
 import axios from "axios";
-import { StatusBar } from "expo-status-bar";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Image,
   Platform,
@@ -12,12 +11,10 @@ import {
   View,
 } from "react-native";
 import { ActivityIndicator, Button, Colors, Divider } from "react-native-paper";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { Grid, LineChart, YAxis } from "react-native-svg-charts";
 import { darkColor, lightColor } from "../Colors";
 import { HistoricalChart } from "../config/api";
 import { CryptoState } from "../CryptoContext";
-import { AntDesign } from "@expo/vector-icons";
 
 const CoinDetailsScreen = () => {
   const { symbol, theme } = CryptoState();

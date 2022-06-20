@@ -1,15 +1,14 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  TouchableOpacity,
-  Platform,
-} from "react-native";
-import React from "react";
 import { Feather } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { useFonts } from "expo-font";
+import {
+  Image,
+  Platform,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 const LandingScreen = () => {
   const navigation = useNavigation();
@@ -34,7 +33,7 @@ const LandingScreen = () => {
           flexDirection: "row",
           alignItems: "center",
         }}
-        onPress={() => navigation.navigate("Root")}
+        onPress={() => navigation.replace("Root")}
       >
         <Text>{"Create Portfolio".toUpperCase()}</Text>
         <Feather name="arrow-up-right" size={24} color="black" />

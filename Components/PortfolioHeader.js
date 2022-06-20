@@ -1,21 +1,9 @@
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
-import React from "react";
 import { SimpleLineIcons } from "@expo/vector-icons";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 const PortfolioHeader = () => {
   return (
     <View style={styles.header}>
-      {/* <View style={styles.headerTopButton}>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Main Portfolio</Text>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Text style={styles.buttonText}>Top 10 coins</Text>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Text style={styles.buttonText}>Experimental</Text>
-        </TouchableOpacity>
-      </View> */}
       <View style={styles.wallet}>
         <Text style={styles.walletText}>$56,900,000</Text>
         <TouchableOpacity style={styles.walleticon}>

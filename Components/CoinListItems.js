@@ -1,5 +1,4 @@
 import { useNavigation } from "@react-navigation/native";
-import React from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Divider } from "react-native-paper";
 import { darkColor, lightColor } from "../Colors";
@@ -7,13 +6,7 @@ import { CryptoState } from "../CryptoContext";
 
 const CoinListItems = ({ coins, search }) => {
   const navigation = useNavigation();
-  // const [chartData, setChartData] = useState();
   const { symbol, theme } = CryptoState();
-  // data = [
-  //   -0.23, 23, -90, -9, -0.23, 23, 100, -9, -0.23, 23, -100, -9, -0.23, 23, 100,
-  //   -9,
-  // ];
-
   if (!coins) {
     return <></>;
   } else {

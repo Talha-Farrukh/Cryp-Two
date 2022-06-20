@@ -1,7 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
-import { LinearGradient } from "expo-linear-gradient";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Keyboard,
   SafeAreaView,

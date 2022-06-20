@@ -1,14 +1,11 @@
-import { StyleSheet, Text, View } from "react-native";
-import React from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { LinearGradient } from "expo-linear-gradient";
-import { Platform } from "react-native";
-import SelectDropdown from "react-native-select-dropdown";
 import { AntDesign } from "@expo/vector-icons";
+import React, { useEffect } from "react";
+import { Platform, StyleSheet, Text, View } from "react-native";
 import { Divider, Switch } from "react-native-paper";
-import { CryptoState } from "../CryptoContext";
-import { useEffect } from "react";
+import { SafeAreaView } from "react-native-safe-area-context";
+import SelectDropdown from "react-native-select-dropdown";
 import { darkColor, lightColor } from "../Colors";
+import { CryptoState } from "../CryptoContext";
 
 const SettingScreen = () => {
   const { currency, setCurrency } = CryptoState();
@@ -119,7 +116,7 @@ const SettingScreen = () => {
                     : darkColor.fontColor,
               }}
             >
-              Set Theme
+              Dark Mode
             </Text>
             <Switch onValueChange={onToggle} value={isEnabled} />
           </View>

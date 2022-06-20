@@ -1,17 +1,16 @@
 import { AntDesign } from "@expo/vector-icons";
 import axios from "axios";
 import { useFonts } from "expo-font";
-import { LinearGradient } from "expo-linear-gradient";
 import { StatusBar } from "expo-status-bar";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Platform,
+  RefreshControl,
   ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
-  RefreshControl,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { darkColor, lightColor } from "../Colors";

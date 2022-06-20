@@ -1,20 +1,11 @@
-import axios, { Axios } from "axios";
-import { LinearGradient } from "expo-linear-gradient";
-import React from "react";
-import {
-  RefreshControl,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import axios from "axios";
 import { useEffect, useState } from "react";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { darkColor, lightColor } from "../Colors";
 import CoinListItems from "../Components/CoinListItems";
-import PortfolioHeader from "../Components/PortfolioHeader";
 import { TrendingCoins } from "../config/api";
 import { CryptoState } from "../CryptoContext";
-import { darkColor, lightColor } from "../Colors";
 
 const TrendingCoinScreen = () => {
   const [trendingCoins, setTrendingCoins] = useState();
