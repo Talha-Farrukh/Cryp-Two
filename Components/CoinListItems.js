@@ -4,7 +4,7 @@ import { Divider } from "react-native-paper";
 import { darkColor, lightColor } from "../Colors";
 import { CryptoState } from "../CryptoContext";
 
-const CoinListItems = ({ coins, search }) => {
+const CoinListItems = ({ coins }) => {
   const navigation = useNavigation();
   const { symbol, theme } = CryptoState();
   if (!coins) {
@@ -13,7 +13,7 @@ const CoinListItems = ({ coins, search }) => {
     return coins.map((row) => {
       const profit = row.price_change_percentage_24h > 0;
       return (
-        <>
+        <View key={row.id}>
           <TouchableOpacity
             key={row.name}
             onPress={() =>
@@ -71,7 +71,7 @@ const CoinListItems = ({ coins, search }) => {
                         : darkColor.fontColor,
                   }}
                 >
-                  {symbol === "$" ? symbol : symbol + " "}
+                  {symbol !== "Rs" ? symbol : symbol + " "}
                   {row.current_price.toFixed(0)}
                 </Text>
                 <View style={{ flexDirection: "row" }}>
@@ -110,7 +110,7 @@ const CoinListItems = ({ coins, search }) => {
               }}
             />
           )}
-        </>
+        </View>
       );
     });
   }

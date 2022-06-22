@@ -79,14 +79,15 @@ const ExperimentalScreen = () => {
           />
           <ScrollView
             style={{
-              height: "91%",
+              // height: 90,
               backgroundColor:
                 theme === "light"
                   ? lightColor.background
                   : darkColor.background,
-              paddingTop: 10,
-              paddingBottom: 20,
+              paddingVertical: 10,
+              // paddingBottom: 15,
               marginTop: 10,
+              marginBottom: 15,
             }}
             onScroll={() => Keyboard.dismiss()}
             scrollEventThrottle={16}

@@ -1,7 +1,7 @@
 import { AntDesign } from "@expo/vector-icons";
-import React, { useEffect } from "react";
-import { Platform, StyleSheet, Text, View } from "react-native";
-import { Divider, Switch } from "react-native-paper";
+import { useCallback, useEffect, useState } from "react";
+import { Platform, StyleSheet, Switch, Text, View } from "react-native";
+import { Divider } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
 import SelectDropdown from "react-native-select-dropdown";
 import { darkColor, lightColor } from "../Colors";
@@ -9,13 +9,46 @@ import { CryptoState } from "../CryptoContext";
 
 const SettingScreen = () => {
   const { setCurrency } = CryptoState();
-  const data = ["usd", "pkr", "inr", "eur", "gbp", "cad", "aud", "cny"];
+  const data = [
+    "usd",
+    "pkr",
+    "inr",
+    "eur",
+    "gbp",
+    "cad",
+    "aud",
+    "cny",
+    "rub",
+    "idr",
+    "mxn",
+    "ils",
+    "jpy",
+    "nzd",
+    "nok",
+    "sek",
+    "chf",
+    "sgd",
+    "thb",
+    "twd",
+    "zar",
+    "bgn",
+    "hkd",
+    "php",
+    "try",
+    "uah",
+    "czk",
+    "pln",
+  ];
+
   const { theme, setTheme } = CryptoState();
-  const [isEnabled, setIsEnabled] = React.useState(false);
+  const [isEnabled, setIsEnabled] = useState(false);
   const onToggle = () => {
-    setIsEnabled(!isEnabled);
     setTheme(theme === "dark" ? "light" : "dark");
   };
+  useEffect(() => {
+    setIsEnabled(theme === "dark" ? true : false);
+  }, [theme]);
+
   return (
     <View
       style={[
@@ -66,7 +99,7 @@ const SettingScreen = () => {
             </Text>
             <SelectDropdown
               data={data}
-              onSelect={(selectedItem, index) => {
+              onSelect={(selectedItem) => {
                 setCurrency(selectedItem);
               }}
               defaultButtonText="Currency"
@@ -114,7 +147,7 @@ const SettingScreen = () => {
             >
               Dark Mode
             </Text>
-            <Switch onValueChange={onToggle} value={isEnabled} />
+            <Switch value={isEnabled} onValueChange={onToggle} />
           </View>
           <Divider
             style={{

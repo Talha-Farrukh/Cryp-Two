@@ -60,23 +60,14 @@ const TrendingCoinScreen = () => {
           </View>
           <View
             style={{
-              height: "72%",
+              height: "68%",
               backgroundColor:
                 theme === "light"
                   ? lightColor.background
                   : darkColor.background,
             }}
           >
-            <ScrollView
-              showsVerticalScrollIndicator={false}
-              // refreshControl={
-              //   <RefreshControl
-              //     refreshing={refresh}
-              //     onRefresh={fetchCoins}
-              //     colors={["#236AF3"]}
-              //   />
-              // }
-            >
+            <ScrollView showsVerticalScrollIndicator={false}>
               <CoinListItems coins={trendingCoins} />
             </ScrollView>
           </View>
@@ -100,8 +91,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingTop: "4%",
-    paddingbottom: "2%",
+    paddingVertical: "4%",
     paddingHorizontal: "6%",
   },
 });

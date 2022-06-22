@@ -1,4 +1,5 @@
 import { AntDesign } from "@expo/vector-icons";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
@@ -19,19 +20,42 @@ import CoinScrollListItems from "../Components/CoinScrollListItems";
 import PortfolioHeader from "../Components/PortfolioHeader";
 import { CoinList } from "../config/api";
 import { CryptoState } from "../CryptoContext";
+import NetInfo from "@react-native-community/netinfo";
 
 const CoinListScreen = () => {
+  const [connection, setConnection] = useState(true);
+  NetInfo.fetch().then((state) => {
+    state.isConnected ? setConnection(true) : setConnection(false);
+  });
+
   const [coins, setCoins] = useState();
   const [refresh, setRefresh] = useState(false);
   const { currency } = CryptoState();
+
   const fetchCoins = async () => {
     setRefresh(true);
     const { data } = await axios.get(CoinList(currency));
     setCoins(data);
     setRefresh(false);
+
+    AsyncStorage.setItem("coins", JSON.stringify(data))
+      .then(() => {
+        console.log("coins saved");
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
   };
+
+  const asyncFetchCoins = async () => {
+    const coinAsync = await AsyncStorage.getItem("coins").then((v) =>
+      console.log("value : " + v)
+    );
+    setCoins(coinAsync);
+  };
+
   useEffect(() => {
-    fetchCoins();
+    connection ? fetchCoins() : asyncFetchCoins();
   }, [currency]);
 
   const [loaded] = useFonts({
@@ -90,7 +114,7 @@ const CoinListScreen = () => {
             </Text>
             <TouchableOpacity
               onPress={() => {
-                fetchCoins();
+                connection ? fetchCoins() : asyncFetchCoins();
               }}
             >
               <AntDesign
@@ -108,7 +132,7 @@ const CoinListScreen = () => {
               refreshControl={
                 <RefreshControl
                   refreshing={refresh}
-                  onRefresh={fetchCoins}
+                  onRefresh={connection ? fetchCoins : asyncFetchCoins}
                   colors={["#236AF3"]}
                 />
               }
@@ -159,7 +183,6 @@ const styles = StyleSheet.create({
   },
   body: {
     height: "100%",
-    // backgroundColor: "#ffff",
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
   },

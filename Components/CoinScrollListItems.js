@@ -10,7 +10,7 @@ const CoinScrollListItems = ({ trendingcoins }) => {
     return <></>;
   } else {
     const handleFiltter = () => {
-      return trendingcoins.filter(
+      return trendingcoins?.filter(
         (trendingcoins) => trendingcoins.price_change_percentage_24h > 0
       );
     };
@@ -62,7 +62,7 @@ const CoinScrollListItems = ({ trendingcoins }) => {
                     : darkColor.fontColor,
               }}
             >
-              {symbol === "$" ? symbol : symbol + " "}
+              {symbol !== "Rs" ? symbol : symbol + " "}
               {item.current_price.toFixed(0).toString().length > 5
                 ? item.current_price.toExponential(1)
                 : item.current_price.toFixed(0)}{" "}

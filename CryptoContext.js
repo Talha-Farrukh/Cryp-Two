@@ -1,11 +1,20 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useLayoutEffect,
+  useState,
+} from "react";
+import { Appearance } from "react-native";
 
 const Crypto = createContext();
 
 function CryptoContext({ children }) {
+  const colorScheme = Appearance.getColorScheme();
   const [currency, setCurrency] = useState("usd");
   const [symbol, setSymbol] = useState("$");
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState(colorScheme);
 
   useEffect(() => {
     if (currency === "pkr") setSymbol("Rs");
@@ -17,6 +26,26 @@ function CryptoContext({ children }) {
     else if (currency === "aud") setSymbol("$");
     else if (currency === "brl") setSymbol("R$");
     else if (currency === "cny") setSymbol("¥");
+    else if (currency === "rub") setSymbol("₽");
+    else if (currency === "idr") setSymbol("Rp");
+    else if (currency === "mxn") setSymbol("$");
+    else if (currency === "ils") setSymbol("₪");
+    else if (currency === "jpy") setSymbol("¥");
+    else if (currency === "nzd") setSymbol("$");
+    else if (currency === "nok") setSymbol("kr");
+    else if (currency === "sek") setSymbol("kr");
+    else if (currency === "chf") setSymbol("Fr");
+    else if (currency === "sgd") setSymbol("$");
+    else if (currency === "thb") setSymbol("฿");
+    else if (currency === "twd") setSymbol("NT$");
+    else if (currency === "zar") setSymbol("R");
+    else if (currency === "bgn") setSymbol("лв");
+    else if (currency === "hkd") setSymbol("$");
+    else if (currency === "php") setSymbol("₱");
+    else if (currency === "try") setSymbol("₺");
+    else if (currency === "uah") setSymbol("₴");
+    else if (currency === "czk") setSymbol("Kč");
+    else if (currency === "pln") setSymbol("zł");
   }, [currency]);
 
   return (

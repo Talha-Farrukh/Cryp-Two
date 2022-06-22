@@ -17,7 +17,7 @@ import { HistoricalChart } from "../config/api";
 import { CryptoState } from "../CryptoContext";
 
 const CoinDetailsScreen = () => {
-  const { symbol, theme } = CryptoState();
+  const { symbol, theme, currency } = CryptoState();
   const route = useRoute();
   const { item } = route.params;
   const [chartData, setChartData] = useState();
@@ -25,7 +25,7 @@ const CoinDetailsScreen = () => {
 
   const fetchData = async () => {
     const price = [];
-    const { data } = await axios.get(HistoricalChart(item.id, days, "USD"));
+    const { data } = await axios.get(HistoricalChart(item.id, days, currency));
     for (let i = 0; i < data.prices.length; i++) {
       price.push(data.prices[i][1]);
     }
@@ -33,7 +33,7 @@ const CoinDetailsScreen = () => {
   };
   useEffect(() => {
     fetchData();
-  }, [days]);
+  }, [days, currency]);
 
   const contentInset = { top: 20, bottom: 20 };
 
@@ -92,7 +92,7 @@ const CoinDetailsScreen = () => {
                 theme === "light" ? lightColor.fontColor : darkColor.fontColor,
             }}
           >
-            {symbol === "$" ? symbol : symbol + " "}
+            {symbol !== "Rs" ? symbol : symbol + " "}
             {item.current_price.toFixed(0)}
           </Text>
           <Text
@@ -140,7 +140,7 @@ const CoinDetailsScreen = () => {
               },
             ]}
           >
-            {symbol === "$" ? symbol : symbol + " "}
+            {symbol !== "RS" ? symbol : symbol + " "}
             {item.low_24h}
           </Text>
         </View>
@@ -169,7 +169,7 @@ const CoinDetailsScreen = () => {
               },
             ]}
           >
-            {symbol === "$" ? symbol : symbol + " "}
+            {symbol !== "Rs" ? symbol : symbol + " "}
             {item.high_24h}
           </Text>
         </View>
