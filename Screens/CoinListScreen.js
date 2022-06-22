@@ -38,9 +38,9 @@ const CoinListScreen = () => {
     setCoins(data);
     setRefresh(false);
 
-    AsyncStorage.setItem("coins", JSON.stringify(data))
+    AsyncStorage.mergeItem("coins", JSON.stringify(data))
       .then(() => {
-        console.log("coins saved");
+        console.log("coins merged");
       })
       .catch((err) => {
         console.log(err.message);
@@ -48,10 +48,14 @@ const CoinListScreen = () => {
   };
 
   const asyncFetchCoins = async () => {
-    const coinAsync = await AsyncStorage.getItem("coins").then((v) =>
-      console.log("value : " + v)
-    );
-    setCoins(coinAsync);
+    await AsyncStorage.getItem("coins").then((v) => {
+      if (!v) {
+        setRefresh(true);
+        console.log("Data get from async");
+        setCoins(v);
+        setRefresh(false);
+      }
+    });
   };
 
   useEffect(() => {

@@ -6,8 +6,13 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import SelectDropdown from "react-native-select-dropdown";
 import { darkColor, lightColor } from "../Colors";
 import { CryptoState } from "../CryptoContext";
+import NetInfo from "@react-native-community/netinfo";
 
 const SettingScreen = () => {
+  const [connection, setConnection] = useState(true);
+  NetInfo.fetch().then((state) => {
+    state.isConnected ? setConnection(true) : setConnection(false);
+  });
   const { setCurrency } = CryptoState();
   const data = [
     "usd",
@@ -99,6 +104,7 @@ const SettingScreen = () => {
             </Text>
             <SelectDropdown
               data={data}
+              disabled={connection ? false : true}
               onSelect={(selectedItem) => {
                 setCurrency(selectedItem);
               }}
