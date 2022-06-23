@@ -125,6 +125,7 @@ const CoinListScreen = () => {
               onPress={() => {
                 connection ? fetchCoins() : asyncFetchCoins();
               }}
+              disabled={connection ? false : true}
             >
               <AntDesign
                 name="reload1"
