@@ -6,17 +6,19 @@ import { DataTable } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { darkColor, lightColor } from "../Colors";
 import CoinListItems from "../Components/CoinListItems";
-import { TrendingCoins } from "../config/api";
+import { CoinList } from "../config/api";
 import { CryptoState } from "../CryptoContext";
 import SelectDropdown from "react-native-select-dropdown";
 import RNPickerSelect, { defaultStyles } from "react-native-picker-select";
+import Compare from "../Components/Compare";
 
 const CompareScreen = () => {
   const [trendingCoins, setTrendingCoins] = useState();
+  const [selectedCoin, setSelectedCoin] = useState();
   const { currency, theme } = CryptoState();
   const { setCurrency } = CryptoState();
   const data = [
-    { label: "USD", value: "usd" },
+    // { label: "USD", value: "usd" },
     { label: "PKR", value: "pkr" },
     { label: "INR", value: "inr" },
     { label: "EUR", value: "eur" },
@@ -47,18 +49,53 @@ const CompareScreen = () => {
   ];
 
   const fetch = async () => {
-    const { data } = await axios.get(TrendingCoins(currency));
-    setTrendingCoins(data);
+    const { data } = await axios.get(CoinList(currency)).catch((error) => {
+      console.log(error);
+    });
+    // console.log(data);
+
+    //fitler data array to get name and price
+    const filteredData = data.map((coin) => {
+      const temp = {
+        logo: coin.image,
+        label: coin.name,
+        symbol: coin.symbol,
+        price: coin.current_price,
+      };
+      return temp;
+    });
+    setTrendingCoins(filteredData);
+    // console.log(trendingCoins);
+  };
+  const fetchNewCurrency = async () => {
+    const { data } = await axios
+      .get(CoinList(selectedCurrency))
+      .catch((error) => {
+        console.log(error);
+      });
+    const filteredData = data.map((coin) => {
+      const temp = {
+        logo: coin.image,
+        label: coin.name,
+        symbol: coin.symbol,
+        price: coin.current_price,
+      };
+      return temp;
+    });
+    setSelectedCoin(filteredData);
   };
   const [selectedCurrency, setSelectedCurrency] = useState("usd");
 
   useEffect(() => {
     fetch();
   }, [currency]);
+  useEffect(() => {
+    fetchNewCurrency();
+  }, [selectedCurrency]);
   const placeholder = {
-    label: "Select a Currency...",
-    value: null,
-    color: "#9EA0A4",
+    label: "USD",
+    value: "usd",
+    color: "black",
   };
 
   return (
@@ -83,10 +120,12 @@ const CompareScreen = () => {
                 theme === "light"
                   ? lightColor.background
                   : darkColor.background,
+              paddingHorizontal: "5%",
+              paddingVertical: "5%",
             },
           ]}
         >
-          <View style={styles.bodyTop}>
+          <View>
             <Text
               style={{
                 fontSize: 18,
@@ -99,90 +138,47 @@ const CompareScreen = () => {
               Compare
             </Text>
           </View>
-          <View>
-            <Text>Name</Text>
-            <Text>{currency.toUpperCase()}</Text>
-            <RNPickerSelect
-              placeholder={placeholder}
-              items={data}
-              onValueChange={(value) => {
-                console.log(value);
-                setSelectedCurrency(value);
-              }}
-              style={pickerSelectStyles}
-              value={selectedCurrency}
-            />
-          </View>
-          <DataTable>
-            <DataTable.Header>
-              <DataTable.Title>Name</DataTable.Title>
-              <DataTable.Title>{currency.toUpperCase()}</DataTable.Title>
-              <DataTable.Title
-                style={{ alignItems: "center", justifyContent: "center" }}
-              >
-                <SelectDropdown
-                  data={data}
-                  onSelect={(selectedItem) => {
-                    setCurrency(selectedItem);
-                  }}
-                  defaultButtonText="Currency"
-                  renderDropdownIcon={() => (
-                    <AntDesign name="downcircleo" size={20} color="black" />
-                  )}
-                  buttonStyle={{
-                    borderRadius: 20,
-                    height: 40,
-                    width: "100%",
-                  }}
-                  buttonTextStyle={{
-                    fontSize: Platform.OS === "android" ? 17 : 13,
-                    textTransform: "uppercase",
-                  }}
-                  statusBarTranslucent={true}
-                  dropdownStyle={{
-                    borderRadius: 20,
-                  }}
-                  defaultValueByIndex={0}
-                  rowStyle={{ height: 40, width: "100%" }}
-                  rowTextStyle={{
-                    fontSize: Platform.OS === "android" ? 15 : 11,
-                    textTransform: "uppercase",
-                  }}
-                />
-              </DataTable.Title>
-            </DataTable.Header>
-          </DataTable>
-          <View>
-            <Text>Name</Text>
-            <Text>
-              Price in {"\n"}
-              {currency.toUpperCase()}
-            </Text>
-            <Text>Name</Text>
-            <Text>Name</Text>
-          </View>
           <View
-            style={{
-              height: "72%",
-              backgroundColor:
-                theme === "light"
-                  ? lightColor.background
-                  : darkColor.background,
-            }}
+            style={{ flexDirection: "row", justifyContent: "space-between" }}
           >
-            <ScrollView
-              showsVerticalScrollIndicator={false}
-              // refreshControl={
-              //   <RefreshControl
-              //     refreshing={refresh}
-              //     onRefresh={fetchCoins}
-              //     colors={["#236AF3"]}
-              //   />
-              // }
-            >
-              <CoinListItems coins={trendingCoins} />
-            </ScrollView>
+            <View style={{ alignItems: "center", justifyContent: "center" }}>
+              <Text>Name</Text>
+            </View>
+            <View style={{ alignItems: "center", justifyContent: "center" }}>
+              <Text>{currency.toUpperCase()}</Text>
+            </View>
+            <View style={{ alignItems: "center", justifyContent: "center" }}>
+              <RNPickerSelect
+                placeholder={placeholder}
+                items={data}
+                onValueChange={(value) => {
+                  console.log(value);
+                  setSelectedCurrency(value);
+                }}
+                style={pickerSelectStyles}
+                value={selectedCurrency}
+              />
+            </View>
           </View>
+
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            // refreshControl={
+            //   <RefreshControl
+            //     refreshing={refresh}
+            //     onRefresh={fetchCoins}
+            //     colors={["#236AF3"]}
+            //   />
+            // }
+          >
+            {/* {trendingCoins &&
+              trendingCoins.map((coin) => (
+                <View>
+                  <Text>{coin.id}</Text>
+                </View>
+              ))} */}
+            <Compare />
+          </ScrollView>
         </View>
       </SafeAreaView>
     </View>
@@ -227,6 +223,7 @@ const pickerSelectStyles = StyleSheet.create({
     borderColor: "gray",
     borderRadius: 4,
     color: "black",
+    width: "100%",
     paddingRight: 30, // to ensure the text is never behind the icon
   },
   inputAndroid: {
