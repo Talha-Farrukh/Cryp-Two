@@ -21,7 +21,7 @@ const LandingScreen = () => {
   return (
     <View style={styles.container}>
       <Image
-        source={require("../assets/img/Logo.png")}
+        source={require("../assets/img/LOGOBLACK..png")}
         style={styles.img}
         resizeMode="contain"
       />

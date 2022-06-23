@@ -44,9 +44,9 @@ export default function TopTabNavigator() {
       }}
     >
       <Tab.Screen name="Main Portfolio" component={CoinListScreen} />
-      <Tab.Screen name="Trending" component={TrendingCoinScreen} />
-      <Tab.Screen name="Search" component={ExperimentalScreen} />
+      {/* <Tab.Screen name="Trending" component={TrendingCoinScreen} /> */}
       <Tab.Screen name="Compare" component={CompareScreen} />
+      <Tab.Screen name="Search" component={ExperimentalScreen} />
     </Tab.Navigator>
   );
 }
