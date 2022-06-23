@@ -7,13 +7,14 @@ import SelectDropdown from "react-native-select-dropdown";
 import { darkColor, lightColor } from "../Colors";
 import { CryptoState } from "../CryptoContext";
 import NetInfo from "@react-native-community/netinfo";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const SettingScreen = () => {
   const [connection, setConnection] = useState(true);
   NetInfo.fetch().then((state) => {
     state.isConnected ? setConnection(true) : setConnection(false);
   });
-  const { setCurrency } = CryptoState();
+  const { currency, setCurrency } = CryptoState();
   const data = [
     "usd",
     "pkr",
@@ -44,7 +45,6 @@ const SettingScreen = () => {
     "czk",
     "pln",
   ];
-
   const { theme, setTheme } = CryptoState();
   const [isEnabled, setIsEnabled] = useState(false);
   const onToggle = () => {
@@ -105,8 +105,17 @@ const SettingScreen = () => {
             <SelectDropdown
               data={data}
               disabled={connection ? false : true}
-              onSelect={(selectedItem) => {
+              onSelect={async (selectedItem) => {
                 setCurrency(selectedItem);
+                //currency saved to async storage logic
+                try {
+                  await AsyncStorage.setItem(
+                    "currency",
+                    JSON.stringify(selectedItem)
+                  );
+                } catch {
+                  (err) => console.log(err.message);
+                }
               }}
               defaultButtonText="Currency"
               renderDropdownIcon={() => (
@@ -125,7 +134,8 @@ const SettingScreen = () => {
               dropdownStyle={{
                 borderRadius: 20,
               }}
-              defaultValueByIndex={0}
+              // defaultValue={currency}
+              defaultValueByIndex={data.indexOf(currency)}
               rowStyle={{ height: 40, width: "100%" }}
               rowTextStyle={{
                 fontSize: Platform.OS === "android" ? 15 : 11,

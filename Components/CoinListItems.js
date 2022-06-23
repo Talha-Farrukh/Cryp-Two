@@ -14,6 +14,7 @@ import { CryptoState } from "../CryptoContext";
 const CoinListItems = ({ coins }) => {
   const navigation = useNavigation();
   const { symbol, theme } = CryptoState();
+
   if (!coins) {
     return <></>;
   } else {
