@@ -1,5 +1,12 @@
 import { useNavigation } from "@react-navigation/native";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  ActivityIndicator,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { Divider } from "react-native-paper";
 import { darkColor, lightColor } from "../Colors";
 import { CryptoState } from "../CryptoContext";
@@ -7,6 +14,7 @@ import { CryptoState } from "../CryptoContext";
 const CoinListItems = ({ coins }) => {
   const navigation = useNavigation();
   const { symbol, theme } = CryptoState();
+
   if (!coins) {
     return <></>;
   } else {

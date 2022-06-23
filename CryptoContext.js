@@ -11,10 +11,21 @@ import { Appearance } from "react-native";
 const Crypto = createContext();
 
 function CryptoContext({ children }) {
+  //getting currency initial value from async storage
+  const asyncCurrency = () => {
+    AsyncStorage.getItem("currency")
+      .then((v) => setCurrency(v.replace(/["]+/g, "")))
+      .catch((e) => console.log(e));
+  };
+  const [currency, setCurrency] = useState();
+  useLayoutEffect(() => {
+    asyncCurrency();
+  }, []);
+
+  //getting deafault color scheme
   const colorScheme = Appearance.getColorScheme();
-  const [currency, setCurrency] = useState("usd");
-  const [symbol, setSymbol] = useState("$");
-  const [theme, setTheme] = useState(colorScheme);
+  const [theme, setTheme] = useState(colorScheme ? colorScheme : "light");
+  const [symbol, setSymbol] = useState();
 
   useEffect(() => {
     if (currency === "pkr") setSymbol("Rs");

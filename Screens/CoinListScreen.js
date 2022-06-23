@@ -23,6 +23,7 @@ import { CryptoState } from "../CryptoContext";
 import NetInfo from "@react-native-community/netinfo";
 
 const CoinListScreen = () => {
+  //Checking connection
   const [connection, setConnection] = useState(true);
   NetInfo.fetch().then((state) => {
     state.isConnected ? setConnection(true) : setConnection(false);
@@ -32,28 +33,33 @@ const CoinListScreen = () => {
   const [refresh, setRefresh] = useState(false);
   const { currency } = CryptoState();
 
+  //fectch data from api
   const fetchCoins = async () => {
     setRefresh(true);
     const { data } = await axios.get(CoinList(currency));
     setCoins(data);
     setRefresh(false);
 
+    //store fetched data in async storage
     AsyncStorage.setItem("coins", JSON.stringify(data))
-      .then(() => {
-        console.log("coins saved");
-      })
+      .then()
       .catch((err) => {
         console.log(err.message);
       });
   };
 
+  //getting data from async storage if connection is false
   const asyncFetchCoins = async () => {
-    const coinAsync = await AsyncStorage.getItem("coins").then((v) =>
-      console.log("value : " + v)
-    );
-    setCoins(coinAsync);
+    await AsyncStorage.getItem("coins").then((v) => {
+      if (!v) {
+        setRefresh(true);
+        setCoins(v);
+        setRefresh(false);
+      }
+    });
   };
 
+  //calling the functions when currency changes
   useEffect(() => {
     connection ? fetchCoins() : asyncFetchCoins();
   }, [currency]);
