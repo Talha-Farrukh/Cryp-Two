@@ -41,8 +41,8 @@ const CoinListScreen = () => {
     setRefresh(false);
 
     //store fetched data in async storage
-    AsyncStorage.setItem("coins", JSON.stringify(data))
-      .then()
+    AsyncStorage.setItem("coins", JSON.parse(data))
+      .then(console.log("coin saved"))
       .catch((err) => {
         console.log(err.message);
       });
@@ -50,13 +50,16 @@ const CoinListScreen = () => {
 
   //getting data from async storage if connection is false
   const asyncFetchCoins = async () => {
-    await AsyncStorage.getItem("coins").then((v) => {
-      if (!v) {
-        setRefresh(true);
-        setCoins(v);
-        setRefresh(false);
-      }
-    });
+    await AsyncStorage.getItem("coins")
+      .then((v) => {
+        if (v != null) {
+          setRefresh(true);
+          console.log(v);
+          setCoins(v);
+          setRefresh(false);
+        }
+      })
+      .catch((err) => console.log(err.message));
   };
 
   //calling the functions when currency changes

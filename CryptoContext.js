@@ -14,7 +14,9 @@ function CryptoContext({ children }) {
   //getting currency initial value from async storage
   const asyncCurrency = () => {
     AsyncStorage.getItem("currency")
-      .then((v) => setCurrency(v.replace(/["]+/g, "")))
+      .then((v) =>
+        v ? setCurrency(v.replace(/["]+/g, "")) : setCurrency("usd")
+      )
       .catch((e) => console.log(e));
   };
   const [currency, setCurrency] = useState();
@@ -22,7 +24,7 @@ function CryptoContext({ children }) {
     asyncCurrency();
   }, []);
 
-  //getting deafault color scheme
+  //getting default color scheme
   const colorScheme = Appearance.getColorScheme();
   const [theme, setTheme] = useState(colorScheme ? colorScheme : "light");
   const [symbol, setSymbol] = useState();
