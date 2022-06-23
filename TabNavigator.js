@@ -6,11 +6,13 @@ import { Foundation, Ionicons } from "@expo/vector-icons";
 import TopTabNavigator from "./TopTabNavigator";
 import { CryptoState } from "./CryptoContext";
 import { darkColor, lightColor } from "./Colors";
+import { useNavigation } from "@react-navigation/native";
 
 const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => {
   const { theme } = CryptoState();
+  const navigation = useNavigation();
   return (
     <Tab.Navigator
       screenOptions={{
