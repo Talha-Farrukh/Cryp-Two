@@ -93,7 +93,9 @@ const CoinDetailsScreen = () => {
             }}
           >
             {symbol !== "Rs" ? symbol : symbol + " "}
-            {item.current_price.toFixed(0)}
+            {item.current_price < 1
+              ? item.current_price.toFixed(4)
+              : item.current_price.toFixed(0)}
           </Text>
           <Text
             style={{
@@ -141,7 +143,9 @@ const CoinDetailsScreen = () => {
             ]}
           >
             {symbol !== "RS" ? symbol : symbol + " "}
-            {item.low_24h}
+            {item.low_24h < 1
+              ? item.low_24h.toFixed(4)
+              : item.low_24h.toFixed(0)}
           </Text>
         </View>
         <View>
@@ -170,7 +174,9 @@ const CoinDetailsScreen = () => {
             ]}
           >
             {symbol !== "Rs" ? symbol : symbol + " "}
-            {item.high_24h}
+            {item.high_24h < 1
+              ? item.high_24h.toFixed(4)
+              : item.high_24h.toFixed(0)}
           </Text>
         </View>
         <View>

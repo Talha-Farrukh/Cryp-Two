@@ -198,7 +198,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     paddingTop: "4%",
-    paddingbottom: "2%",
+    paddingbottom: "4%",
     paddingHorizontal: "6%",
   },
 });

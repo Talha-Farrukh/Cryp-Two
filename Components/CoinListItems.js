@@ -80,7 +80,9 @@ const CoinListItems = ({ coins }) => {
                   }}
                 >
                   {symbol !== "Rs" ? symbol : symbol + " "}
-                  {row.current_price.toFixed(0)}
+                  {row.current_price < 1
+                    ? row.current_price.toFixed(2)
+                    : row.current_price.toFixed(0)}
                 </Text>
                 <View style={{ flexDirection: "row" }}>
                   <Text
