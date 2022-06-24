@@ -25,7 +25,9 @@ const CoinDetailsScreen = () => {
 
   const fetchData = async () => {
     const price = [];
-    const { data } = await axios.get(HistoricalChart(item.id, days, currency));
+    const { data } = await axios
+      .get(HistoricalChart(item.id, days, currency))
+      .catch((err) => console.log(err));
     for (let i = 0; i < data.prices.length; i++) {
       price.push(data.prices[i][1]);
     }

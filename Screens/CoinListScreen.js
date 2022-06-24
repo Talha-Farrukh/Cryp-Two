@@ -24,9 +24,9 @@ import { CryptoState } from "../CryptoContext";
 const CoinListScreen = () => {
   //function to set landing screen value
   const setLandingValue = async () => {
-    await AsyncStorage.setItem("landing", JSON.stringify(false))
-      .then()
-      .catch((err) => console.log(err));
+    await AsyncStorage.setItem("landing", JSON.stringify(false)).catch((err) =>
+      console.log(err)
+    );
   };
 
   //Saving landing value in async storage
