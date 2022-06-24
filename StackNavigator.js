@@ -1,26 +1,40 @@
-import "react-native-gesture-handler";
-import React from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   createStackNavigator,
   TransitionPresets,
 } from "@react-navigation/stack";
-import LandingScreen from "./Screens/LandingScreen";
-import CoinListScreen from "./Screens/CoinListScreen";
-import TabNavigator from "./TabNavigator";
+import { useEffect, useState } from "react";
+import "react-native-gesture-handler";
 import CoinDetailsScreen from "./Screens/CoinDetailsScreen";
+import LandingScreen from "./Screens/LandingScreen";
+import TabNavigator from "./TabNavigator";
 
 const StackNavigator = () => {
   const Stack = createStackNavigator();
+  const [landing, setLanding] = useState();
+
+  useEffect(async () => {
+    try {
+      await AsyncStorage.getItem("landing").then((v) =>
+        setLanding(v === "false" ? false : true)
+      );
+    } catch {
+      (err) => console.log(err);
+    }
+  }, []);
+
   return (
     <Stack.Navigator>
       <Stack.Group>
-        <Stack.Screen
-          name={"Landing"}
-          component={LandingScreen}
-          options={{
-            headerShown: false,
-          }}
-        />
+        {landing && (
+          <Stack.Screen
+            name={"Landing"}
+            component={LandingScreen}
+            options={{
+              headerShown: false,
+            }}
+          />
+        )}
         <Stack.Screen
           name={"Root"}
           component={TabNavigator}

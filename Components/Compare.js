@@ -1,7 +1,6 @@
-import { StyleSheet, Text, View, Image } from "react-native";
-import React, { useEffect, useState } from "react";
-import { CryptoState } from "../CryptoContext";
+import { Image, StyleSheet, Text, View } from "react-native";
 import { darkColor, lightColor } from "../Colors";
+import { CryptoState } from "../CryptoContext";
 
 const Compare = ({
   name,
@@ -9,21 +8,25 @@ const Compare = ({
   price,
   coinSymbol,
   newPrice,
-  currency,
-  newCurrency,
   currencyIcon,
   id,
 }) => {
   const { symbol, theme } = CryptoState();
 
   return (
-    <>
+    <View
+      style={{
+        marginVertical: "4%",
+        flexDirection: "row",
+        justifyContent: "space-between",
+      }}
+    >
       <View
-        key={id}
         style={{
-          marginVertical: "4%",
+          width: "42%",
+          // alignItems: "center",
+          // justifyContent: "center",
           flexDirection: "row",
-          justifyContent: "space-between",
         }}
       >
         <View
@@ -74,29 +77,55 @@ const Compare = ({
             style={{
               color:
                 theme === "light" ? lightColor.fontColor : darkColor.fontColor,
+              // fontWeight: "bold",
             }}
           >
-            {symbol} {price}
+            {name}
           </Text>
-        </View>
-        <View
-          style={{
-            width: "30%",
-            // alignItems: "flex-end",
-            justifyContent: "center",
-          }}
-        >
           <Text
             style={{
               color:
                 theme === "light" ? lightColor.fontColor : darkColor.fontColor,
             }}
           >
-            {currencyIcon} {newPrice}
+            {coinSymbol.toUpperCase()}
           </Text>
         </View>
       </View>
-    </>
+      <View
+        style={{
+          width: "31%",
+          // alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Text
+          style={{
+            color:
+              theme === "light" ? lightColor.fontColor : darkColor.fontColor,
+          }}
+        >
+          {symbol} {price < 1 ? price.toFixed(4) : price.toFixed(0)}
+        </Text>
+      </View>
+      <View
+        style={{
+          width: "30%",
+          // alignItems: "flex-end",
+          justifyContent: "center",
+        }}
+      >
+        <Text
+          style={{
+            color:
+              theme === "light" ? lightColor.fontColor : darkColor.fontColor,
+          }}
+        >
+          {currencyIcon}{" "}
+          {newPrice < 1 ? newPrice.toFixed(4) : newPrice.toFixed(0)}
+        </Text>
+      </View>
+    </View>
   );
 };
 

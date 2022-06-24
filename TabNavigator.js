@@ -1,18 +1,14 @@
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import React from "react";
-import CoinListScreen from "./Screens/CoinListScreen";
-import SettingScreen from "./Screens/SettingScreen";
 import { Foundation, Ionicons } from "@expo/vector-icons";
-import TopTabNavigator from "./TopTabNavigator";
-import { CryptoState } from "./CryptoContext";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { darkColor, lightColor } from "./Colors";
-import { useNavigation } from "@react-navigation/native";
+import { CryptoState } from "./CryptoContext";
+import SettingScreen from "./Screens/SettingScreen";
+import TopTabNavigator from "./TopTabNavigator";
 
 const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => {
   const { theme } = CryptoState();
-  const navigation = useNavigation();
   return (
     <Tab.Navigator
       screenOptions={{

@@ -12,7 +12,6 @@ const CompareScreen = () => {
   const [trendingCoins, setTrendingCoins] = useState();
   const [selectedCoin, setSelectedCoin] = useState(null);
   const { currency, theme } = CryptoState();
-  const { setCurrency } = CryptoState();
   const [currencyIcon, setCurrencyIcon] = useState();
   const [selectedCurrency, setSelectedCurrency] = useState("usd");
 
@@ -83,7 +82,6 @@ const CompareScreen = () => {
     const { data } = await axios.get(CoinList(currency)).catch((error) => {
       console.log(error);
     });
-    // console.log(data);
 
     //fitler data array to get name and price
     const filteredData = data.map((coin) => {
@@ -137,7 +135,6 @@ const CompareScreen = () => {
       ]}
     >
       <SafeAreaView>
-        {/* <PortfolioHeader /> */}
         <View
           style={[
             styles.body,
@@ -241,14 +238,15 @@ const CompareScreen = () => {
                       theme === "light"
                         ? lightColor.fontColor
                         : darkColor.fontColor,
-
                     fontSize: 16,
+                    textAlign: "center",
+                    paddingVertical: 12,
                     paddingHorizontal: 10,
-                    paddingVertical: 8,
-                    borderWidth: 0.5,
-                    borderColor: "purple",
-                    borderRadius: 8,
-                    paddingRight: 30,
+                    borderWidth: 1,
+                    borderColor: "gray",
+                    borderRadius: 4,
+                    width: "100%",
+                    marginRight: 30,
                   },
                 }}
                 value={selectedCurrency}
@@ -260,7 +258,7 @@ const CompareScreen = () => {
               {trendingCoins &&
                 trendingCoins.map((coin, i) => (
                   <Compare
-                    id={coin.id}
+                    key={coin.id}
                     image={coin.logo}
                     name={
                       coin.label.length > 9
@@ -311,30 +309,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "gray",
     borderRadius: 4,
-    color: "black",
-    paddingRight: 30,
-  },
-});
-const pickerSelectStyles = StyleSheet.create({
-  inputIOS: {
-    fontSize: 16,
-    textAlign: "center",
-    paddingVertical: 12,
-    paddingHorizontal: 10,
-    borderWidth: 1,
-    borderColor: "gray",
-    borderRadius: 4,
-    color: "black",
-    width: "100%",
-    marginRight: 30,
-  },
-  inputAndroid: {
-    fontSize: 16,
-    paddingHorizontal: 10,
-    paddingVertical: 8,
-    borderWidth: 0.5,
-    borderColor: "purple",
-    borderRadius: 8,
     color: "black",
     paddingRight: 30,
   },

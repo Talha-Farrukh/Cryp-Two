@@ -4,7 +4,7 @@
     "slug": "Cryp-Two",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/img/LOGOBLACK..png",
+    "icon": "./assets/icon-black.jpg",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/img/LOGOBLACK_.png",
@@ -20,14 +20,14 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/img/LOGOBLACK..png",
+        "foregroundImage": "./assets/icon-black.jpg",
         "backgroundColor": "#FFFFFF"
       },
       "softwareKeyboardLayoutMode": "pan",
       "package": "com.talha_farrukh.cryptohunter"
     },
     "web": {
-      "favicon": "./assets/img/LOGOBLACK..png"
+      "favicon": "./assets/icon-black.jpg"
     }
   }
 }

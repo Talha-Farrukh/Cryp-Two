@@ -65,6 +65,8 @@ const CoinScrollListItems = ({ trendingcoins }) => {
               {symbol !== "Rs" ? symbol : symbol + " "}
               {item.current_price.toFixed(0).toString().length > 5
                 ? item.current_price.toExponential(1)
+                : item.current_price < 1
+                ? item.current_price.toFixed(2)
                 : item.current_price.toFixed(0)}{" "}
               <Text style={{ color: "green" }}>
                 +{item.price_change_percentage_24h.toFixed(2)}%
