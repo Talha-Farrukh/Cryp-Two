@@ -29,42 +29,29 @@ const Compare = ({
           flexDirection: "row",
         }}
       >
-        <View
-          style={{
-            width: "42%",
-            // alignItems: "center",
-            // justifyContent: "center",
-            flexDirection: "row",
-          }}
-        >
-          <Image
-            source={{ uri: image }}
-            style={{ width: 38, height: 38 }}
-            resizeMode="contain"
-          />
-          <View style={{ paddingLeft: 10, justifyContent: "center" }}>
-            <Text
-              style={{
-                color:
-                  theme === "light"
-                    ? lightColor.fontColor
-                    : darkColor.fontColor,
-                // fontWeight: "bold",
-              }}
-            >
-              {name}
-            </Text>
-            <Text
-              style={{
-                color:
-                  theme === "light"
-                    ? lightColor.fontColor
-                    : darkColor.fontColor,
-              }}
-            >
-              {coinSymbol.toUpperCase()}
-            </Text>
-          </View>
+        <Image
+          source={{ uri: image }}
+          style={{ width: 38, height: 38 }}
+          resizeMode="contain"
+        />
+        <View style={{ paddingLeft: 10, justifyContent: "center" }}>
+          <Text
+            style={{
+              color:
+                theme === "light" ? lightColor.fontColor : darkColor.fontColor,
+              // fontWeight: "bold",
+            }}
+          >
+            {name}
+          </Text>
+          <Text
+            style={{
+              color:
+                theme === "light" ? lightColor.fontColor : darkColor.fontColor,
+            }}
+          >
+            {coinSymbol.toUpperCase()}
+          </Text>
         </View>
       </View>
       <View
