@@ -147,7 +147,7 @@ const CoinListScreen = () => {
               />
             </TouchableOpacity>
           </View>
-          <View style={{ height: Platform.OS === "android" ? "46%" : "46%" }}>
+          <View style={{ height: Platform.OS === "android" ? "46%" : "50%" }}>
             <ScrollView
               showsVerticalScrollIndicator={false}
               refreshControl={

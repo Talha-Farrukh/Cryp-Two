@@ -126,63 +126,71 @@ const SettingScreen = () => {
           ]}
         >
           <View style={styles.bodyTop}>
-            <Text
-              style={{
-                fontSize: Platform.OS === "android" ? 17 : 14,
-                color:
-                  theme === "light"
-                    ? lightColor.fontColor
-                    : darkColor.fontColor,
-              }}
-            >
-              Set Currency
-            </Text>
-            <RNPickerSelect
-              placeholder={placeholder}
-              items={data}
-              onValueChange={async (value) => {
-                setCurrency(value);
-                //currency saved to async storage logic
-                try {
-                  await AsyncStorage.setItem("currency", JSON.stringify(value));
-                } catch {
-                  (err) => console.log(err.message);
-                }
-              }}
-              style={{
-                inputIOS: {
+            <View>
+              <Text
+                style={{
+                  fontSize: Platform.OS === "android" ? 17 : 14,
                   color:
                     theme === "light"
                       ? lightColor.fontColor
                       : darkColor.fontColor,
-                  fontSize: 16,
-                  textAlign: "center",
-                  paddingVertical: 12,
-                  paddingHorizontal: 10,
-                  borderWidth: 1,
-                  borderColor: "gray",
-                  borderRadius: 4,
-                  width: "100%",
-                  marginRight: 30,
-                },
-                inputAndroid: {
-                  color:
-                    theme === "light"
-                      ? lightColor.fontColor
-                      : darkColor.fontColor,
-                  fontSize: 16,
-                  textAlign: "center",
-                  paddingVertical: 12,
-                  paddingHorizontal: 10,
-                  borderWidth: 1,
-                  borderColor: "gray",
-                  borderRadius: 4,
-                  width: "100%",
-                  marginRight: 30,
-                },
-              }}
-              value={currency}
-            />
+                }}
+              >
+                Set Currency
+              </Text>
+            </View>
+            <View style={{ width: "30%" }}>
+              <RNPickerSelect
+                placeholder={placeholder}
+                items={data}
+                onValueChange={async (value) => {
+                  setCurrency(value);
+                  //currency saved to async storage logic
+                  try {
+                    await AsyncStorage.setItem(
+                      "currency",
+                      JSON.stringify(value)
+                    );
+                  } catch {
+                    (err) => console.log(err.message);
+                  }
+                }}
+                style={{
+                  inputIOS: {
+                    color:
+                      theme === "light"
+                        ? lightColor.fontColor
+                        : darkColor.fontColor,
+                    fontSize: 16,
+                    textAlign: "center",
+                    paddingVertical: 12,
+                    paddingHorizontal: 10,
+                    borderWidth: 1,
+                    borderColor: "gray",
+                    borderRadius: 4,
+                    width: "100%",
+                    marginRight: 30,
+                  },
+                  inputAndroid: {
+                    color:
+                      theme === "light"
+                        ? lightColor.fontColor
+                        : darkColor.fontColor,
+                    fontSize: 16,
+                    textAlign: "center",
+                    paddingVertical: 12,
+                    paddingHorizontal: 10,
+                    borderWidth: 1,
+                    borderColor: "gray",
+                    borderRadius: 4,
+                    width: "100%",
+                    height: 40,
+                    marginRight: 30,
+                  },
+                }}
+                value={currency}
+              />
+            </View>
             {/* <SelectDropdown
               data={data}
               disabled={connection ? false : true}
@@ -274,9 +282,9 @@ const styles = StyleSheet.create({
   },
   bodyTop: {
     flexDirection: "row",
-    justifyContent: "space-between",
     alignItems: "center",
-    paddingVertical: "6%",
-    paddingHorizontal: "6%",
+    justifyContent: "space-between",
+    paddingVertical: "5%",
+    paddingHorizontal: "5%",
   },
 });
