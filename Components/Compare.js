@@ -9,6 +9,7 @@ const Compare = ({
   coinSymbol,
   newPrice,
   currencyIcon,
+  id,
 }) => {
   const { symbol, theme } = CryptoState();
 
@@ -28,7 +29,11 @@ const Compare = ({
           flexDirection: "row",
         }}
       >
-        <Image source={{ uri: image }} style={{ width: 38, height: 38 }} />
+        <Image
+          source={{ uri: image }}
+          style={{ width: 38, height: 38 }}
+          resizeMode="contain"
+        />
         <View style={{ paddingLeft: 10, justifyContent: "center" }}>
           <Text
             style={{
