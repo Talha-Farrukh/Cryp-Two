@@ -8,6 +8,7 @@ import { darkColor, lightColor } from "../Colors";
 import { CryptoState } from "../CryptoContext";
 import NetInfo from "@react-native-community/netinfo";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import RNPickerSelect from "react-native-picker-select";
 
 const SettingScreen = () => {
   const [connection, setConnection] = useState(true);
@@ -15,35 +16,71 @@ const SettingScreen = () => {
     state.isConnected ? setConnection(true) : setConnection(false);
   });
   const { currency, setCurrency } = CryptoState();
+  // const data = [
+  //   "usd",
+  //   "pkr",
+  //   "inr",
+  //   "eur",
+  //   "gbp",
+  //   "cad",
+  //   "aud",
+  //   "cny",
+  //   "rub",
+  //   "idr",
+  //   "mxn",
+  //   "ils",
+  //   "jpy",
+  //   "nzd",
+  //   "nok",
+  //   "sek",
+  //   "chf",
+  //   "sgd",
+  //   "thb",
+  //   "twd",
+  //   "zar",
+  //   "bgn",
+  //   "hkd",
+  //   "php",
+  //   "try",
+  //   "uah",
+  //   "czk",
+  //   "pln",
+  // ];
+
+  const placeholder = {
+    label: "USD",
+    value: "usd",
+    color: "black",
+  };
   const data = [
-    "usd",
-    "pkr",
-    "inr",
-    "eur",
-    "gbp",
-    "cad",
-    "aud",
-    "cny",
-    "rub",
-    "idr",
-    "mxn",
-    "ils",
-    "jpy",
-    "nzd",
-    "nok",
-    "sek",
-    "chf",
-    "sgd",
-    "thb",
-    "twd",
-    "zar",
-    "bgn",
-    "hkd",
-    "php",
-    "try",
-    "uah",
-    "czk",
-    "pln",
+    // { label: "USD", value: "usd" },
+    { label: "PKR", value: "pkr" },
+    { label: "INR", value: "inr" },
+    { label: "EUR", value: "eur" },
+    { label: "GBP", value: "gbp" },
+    { label: "CAD", value: "cad" },
+    { label: "AUD", value: "aud" },
+    { label: "CNY", value: "cny" },
+    { label: "RUB", value: "rub" },
+    { label: "IDR", value: "idr" },
+    { label: "MXN", value: "mxn" },
+    { label: "ILS", value: "ils" },
+    { label: "JPY", value: "jpy" },
+    { label: "NZD", value: "nzd" },
+    { label: "NOK", value: "nok" },
+    { label: "SEK", value: "sek" },
+    { label: "CHF", value: "chf" },
+    { label: "SGD", value: "sgd" },
+    { label: "THB", value: "thb" },
+    { label: "TWD", value: "twd" },
+    { label: "ZAR", value: "zar" },
+    { label: "BGN", value: "bgn" },
+    { label: "HKD", value: "hkd" },
+    { label: "PHP", value: "php" },
+    { label: "TRY", value: "try" },
+    { label: "UAH", value: "uah" },
+    { label: "CZK", value: "czk" },
+    { label: "PLN", value: "pln" },
   ];
   const { theme, setTheme } = CryptoState();
   const [isEnabled, setIsEnabled] = useState(false);
@@ -102,7 +139,53 @@ const SettingScreen = () => {
             >
               Set Currency
             </Text>
-            <SelectDropdown
+            <RNPickerSelect
+              placeholder={placeholder}
+              items={data}
+              onValueChange={async (value) => {
+                setCurrency(value);
+                //currency saved to async storage logic
+                try {
+                  await AsyncStorage.setItem("currency", JSON.stringify(value));
+                } catch {
+                  (err) => console.log(err.message);
+                }
+              }}
+              style={{
+                inputIOS: {
+                  color:
+                    theme === "light"
+                      ? lightColor.fontColor
+                      : darkColor.fontColor,
+                  fontSize: 16,
+                  textAlign: "center",
+                  paddingVertical: 12,
+                  paddingHorizontal: 10,
+                  borderWidth: 1,
+                  borderColor: "gray",
+                  borderRadius: 4,
+                  width: "100%",
+                  marginRight: 30,
+                },
+                inputAndroid: {
+                  color:
+                    theme === "light"
+                      ? lightColor.fontColor
+                      : darkColor.fontColor,
+                  fontSize: 16,
+                  textAlign: "center",
+                  paddingVertical: 12,
+                  paddingHorizontal: 10,
+                  borderWidth: 1,
+                  borderColor: "gray",
+                  borderRadius: 4,
+                  width: "100%",
+                  marginRight: 30,
+                },
+              }}
+              value={currency}
+            />
+            {/* <SelectDropdown
               data={data}
               disabled={connection ? false : true}
               onSelect={async (selectedItem) => {
@@ -141,7 +224,7 @@ const SettingScreen = () => {
                 fontSize: Platform.OS === "android" ? 15 : 11,
                 textTransform: "uppercase",
               }}
-            />
+            /> */}
           </View>
           <Divider
             style={{
