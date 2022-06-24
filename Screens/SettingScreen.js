@@ -14,37 +14,6 @@ const SettingScreen = () => {
     state.isConnected ? setConnection(true) : setConnection(false);
   });
   const { currency, setCurrency } = CryptoState();
-  // const data = [
-  //   "usd",
-  //   "pkr",
-  //   "inr",
-  //   "eur",
-  //   "gbp",
-  //   "cad",
-  //   "aud",
-  //   "cny",
-  //   "rub",
-  //   "idr",
-  //   "mxn",
-  //   "ils",
-  //   "jpy",
-  //   "nzd",
-  //   "nok",
-  //   "sek",
-  //   "chf",
-  //   "sgd",
-  //   "thb",
-  //   "twd",
-  //   "zar",
-  //   "bgn",
-  //   "hkd",
-  //   "php",
-  //   "try",
-  //   "uah",
-  //   "czk",
-  //   "pln",
-  // ];
-
   const placeholder = {
     label: "USD",
     value: "usd",

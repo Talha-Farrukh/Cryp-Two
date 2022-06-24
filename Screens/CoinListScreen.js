@@ -25,7 +25,7 @@ const CoinListScreen = () => {
   //function to set landing screen value
   const setLandingValue = async () => {
     await AsyncStorage.setItem("landing", JSON.stringify(false))
-      .then(console.log("landing value saved"))
+      .then()
       .catch((err) => console.log(err));
   };
 
