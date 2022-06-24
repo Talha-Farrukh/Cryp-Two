@@ -109,7 +109,7 @@ const CoinListScreen = () => {
         animated
       />
       <SafeAreaView>
-        <PortfolioHeader />
+        {/* <PortfolioHeader /> */}
         <View
           style={[
             styles.body,
@@ -148,7 +148,7 @@ const CoinListScreen = () => {
               />
             </TouchableOpacity>
           </View>
-          <View style={{ height: Platform.OS === "android" ? "33%" : "35%" }}>
+          <View style={{ height: Platform.OS === "android" ? "46%" : "46%" }}>
             <ScrollView
               showsVerticalScrollIndicator={false}
               refreshControl={
@@ -207,6 +207,7 @@ const styles = StyleSheet.create({
     height: "100%",
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
+    marginTop: "20%",
   },
   bodyTop: {
     flexDirection: "row",

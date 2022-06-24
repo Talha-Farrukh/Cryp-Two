@@ -40,7 +40,6 @@ export default function TopTabNavigator() {
           fontSize: 10,
           alignSelf: "center",
         },
-        swipeEnabled: false,
       }}
     >
       <Tab.Screen name="Main Portfolio" component={CoinListScreen} />
