@@ -12,8 +12,7 @@ import TabNavigator from "./TabNavigator";
 const StackNavigator = () => {
   const Stack = createStackNavigator();
   const [landing, setLanding] = useState();
-
-  useEffect(async () => {
+  const getingLanding = async () => {
     try {
       await AsyncStorage.getItem("landing").then((v) =>
         setLanding(v === "false" ? false : true)
@@ -21,6 +20,10 @@ const StackNavigator = () => {
     } catch {
       (err) => console.log(err);
     }
+  };
+
+  useEffect(() => {
+    getingLanding();
   }, []);
 
   return (

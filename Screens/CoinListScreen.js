@@ -23,11 +23,16 @@ import { CryptoState } from "../CryptoContext";
 import NetInfo from "@react-native-community/netinfo";
 
 const CoinListScreen = () => {
-  //Saving landing value in async storage
-  useEffect(async () => {
+  //function to set landing screen value
+  const setLandingValue = async () => {
     await AsyncStorage.setItem("landing", JSON.stringify(false))
       .then(console.log("landing value saved"))
       .catch((err) => console.log(err));
+  };
+
+  //Saving landing value in async storage
+  useEffect(() => {
+    setLandingValue();
   }, []);
 
   //Checking connection
