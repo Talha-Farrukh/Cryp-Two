@@ -1,12 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import {
-  ActivityIndicator,
-  Image,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Divider } from "react-native-paper";
 import { darkColor, lightColor } from "../Colors";
 import { CryptoState } from "../CryptoContext";

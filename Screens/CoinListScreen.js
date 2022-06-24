@@ -1,5 +1,6 @@
 import { AntDesign } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import NetInfo from "@react-native-community/netinfo";
 import axios from "axios";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
@@ -17,10 +18,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { darkColor, lightColor } from "../Colors";
 import CoinListItems from "../Components/CoinListItems";
 import CoinScrollListItems from "../Components/CoinScrollListItems";
-import PortfolioHeader from "../Components/PortfolioHeader";
 import { CoinList } from "../config/api";
 import { CryptoState } from "../CryptoContext";
-import NetInfo from "@react-native-community/netinfo";
 
 const CoinListScreen = () => {
   //function to set landing screen value

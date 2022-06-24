@@ -3,9 +3,8 @@ import { Platform } from "react-native";
 import { darkColor, lightColor } from "./Colors";
 import { CryptoState } from "./CryptoContext";
 import CoinListScreen from "./Screens/CoinListScreen";
-import ExperimentalScreen from "./Screens/ExperimentalScreen";
-import TrendingCoinScreen from "./Screens/TrendingCoinScreen";
 import CompareScreen from "./Screens/CompareScreen";
+import ExperimentalScreen from "./Screens/ExperimentalScreen";
 
 const Tab = createMaterialTopTabNavigator();
 

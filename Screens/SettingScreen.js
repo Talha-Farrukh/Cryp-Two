@@ -1,14 +1,12 @@
-import { AntDesign } from "@expo/vector-icons";
-import { useCallback, useEffect, useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import NetInfo from "@react-native-community/netinfo";
+import { useEffect, useState } from "react";
 import { Platform, StyleSheet, Switch, Text, View } from "react-native";
 import { Divider } from "react-native-paper";
+import RNPickerSelect from "react-native-picker-select";
 import { SafeAreaView } from "react-native-safe-area-context";
-import SelectDropdown from "react-native-select-dropdown";
 import { darkColor, lightColor } from "../Colors";
 import { CryptoState } from "../CryptoContext";
-import NetInfo from "@react-native-community/netinfo";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import RNPickerSelect from "react-native-picker-select";
 
 const SettingScreen = () => {
   const [connection, setConnection] = useState(true);
