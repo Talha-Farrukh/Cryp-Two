@@ -22,7 +22,10 @@ const ExperimentalScreen = () => {
   const [search, setSearch] = useState();
   const { currency, theme } = CryptoState();
   const fetchCoins = async () => {
-    const { data } = await axios.get(CoinList(currency));
+    const { data } = await axios
+      .get(CoinList(currency))
+      .then()
+      .catch((err) => console.log(err.message));
     setCoins(data);
   };
 

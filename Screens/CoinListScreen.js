@@ -23,6 +23,13 @@ import { CryptoState } from "../CryptoContext";
 import NetInfo from "@react-native-community/netinfo";
 
 const CoinListScreen = () => {
+  //Saving landing value in async storage
+  useEffect(async () => {
+    await AsyncStorage.setItem("landing", JSON.stringify(false))
+      .then(console.log("landing value saved"))
+      .catch((err) => console.log(err));
+  }, []);
+
   //Checking connection
   const [connection, setConnection] = useState(true);
   NetInfo.fetch().then((state) => {
@@ -36,7 +43,10 @@ const CoinListScreen = () => {
   //fectch data from api
   const fetchCoins = async () => {
     setRefresh(true);
-    const { data } = await axios.get(CoinList(currency));
+    const { data } = await axios
+      .get(CoinList(currency))
+      .then()
+      .catch((err) => console.log(err));
     setCoins(data);
     setRefresh(false);
 

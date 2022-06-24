@@ -62,7 +62,7 @@ const Compare = ({
               theme === "light" ? lightColor.fontColor : darkColor.fontColor,
           }}
         >
-          {symbol} {price}
+          {symbol} {price < 1 ? price.toFixed(4) : price.toFixed(0)}
         </Text>
       </View>
       <View
@@ -78,7 +78,8 @@ const Compare = ({
               theme === "light" ? lightColor.fontColor : darkColor.fontColor,
           }}
         >
-          {currencyIcon} {newPrice}
+          {currencyIcon}{" "}
+          {newPrice < 1 ? newPrice.toFixed(4) : newPrice.toFixed(0)}
         </Text>
       </View>
     </View>
