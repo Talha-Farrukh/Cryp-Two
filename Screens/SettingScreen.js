@@ -153,7 +153,6 @@ const SettingScreen = () => {
                     borderColor: "gray",
                     borderRadius: 4,
                     width: "100%",
-                    height: 40,
                     marginRight: 30,
                   },
                 }}
