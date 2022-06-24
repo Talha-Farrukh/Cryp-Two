@@ -14,9 +14,11 @@ const StackNavigator = () => {
   const [landing, setLanding] = useState();
   const getingLanding = async () => {
     try {
-      await AsyncStorage.getItem("landing").then((v) =>
-        setLanding(v === "false" ? false : true)
-      );
+      await AsyncStorage.getItem("landing").then((v) => {
+        if (v !== null) {
+          setLanding(v === "false" ? false : true);
+        }
+      });
     } catch {
       (err) => console.log(err);
     }
