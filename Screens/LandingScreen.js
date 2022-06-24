@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   },
   img: {
     height: "50%",
-    width: "85%",
+    width: "75%",
   },
   txt: {
     fontSize: Platform.OS === "android" ? 35 : 50,

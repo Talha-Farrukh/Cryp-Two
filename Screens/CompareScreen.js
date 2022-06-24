@@ -1,16 +1,12 @@
 import axios from "axios";
-import { AntDesign } from "@expo/vector-icons";
 import { useEffect, useState } from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
-import { DataTable } from "react-native-paper";
+import RNPickerSelect from "react-native-picker-select";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { darkColor, lightColor } from "../Colors";
-import CoinListItems from "../Components/CoinListItems";
+import Compare from "../Components/Compare";
 import { CoinList } from "../config/api";
 import { CryptoState } from "../CryptoContext";
-import SelectDropdown from "react-native-select-dropdown";
-import RNPickerSelect, { defaultStyles } from "react-native-picker-select";
-import Compare from "../Components/Compare";
 
 const CompareScreen = () => {
   const [trendingCoins, setTrendingCoins] = useState();
@@ -92,6 +88,7 @@ const CompareScreen = () => {
     //fitler data array to get name and price
     const filteredData = data.map((coin) => {
       const temp = {
+        id: coin.id,
         logo: coin.image,
         label: coin.name,
         symbol: coin.symbol,
@@ -113,7 +110,6 @@ const CompareScreen = () => {
       return temp;
     });
     setSelectedCoin(filteredData);
-    // console.log(selectedCoin);
   };
 
   useEffect(() => {
@@ -169,12 +165,15 @@ const CompareScreen = () => {
             </Text>
           </View>
           <View
-            style={{ flexDirection: "row", justifyContent: "space-between" }}
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              paddingHorizontal: 5,
+            }}
           >
             <View
               style={{
-                width: "30%",
-                // alignItems: "center",
+                width: "42%",
                 justifyContent: "center",
               }}
             >
@@ -192,7 +191,7 @@ const CompareScreen = () => {
             <View
               style={{
                 width: "30%",
-                alignItems: "center",
+                // alignItems: "center",
                 justifyContent: "center",
               }}
             >
@@ -209,16 +208,16 @@ const CompareScreen = () => {
             </View>
             <View
               style={{
-                width: "30%",
-                alignItems: "center",
-                justifyContent: "center",
+                width: "32%",
+                // alignItems: "center",
+                // justifyContent: "center",
               }}
             >
               <RNPickerSelect
                 placeholder={placeholder}
                 items={data}
                 onValueChange={(value) => {
-                  console.log(value);
+                  // console.log(value);
                   setSelectedCurrency(value);
                 }}
                 style={{
@@ -234,7 +233,6 @@ const CompareScreen = () => {
                     borderWidth: 1,
                     borderColor: "gray",
                     borderRadius: 4,
-                    // color: "black",
                     width: "100%",
                     marginRight: 30,
                   },
@@ -250,7 +248,6 @@ const CompareScreen = () => {
                     borderWidth: 0.5,
                     borderColor: "purple",
                     borderRadius: 8,
-                    // color: "black",
                     paddingRight: 30,
                   },
                 }}
@@ -259,20 +256,11 @@ const CompareScreen = () => {
             </View>
           </View>
           <View style={{ height: "70%" }}>
-            <ScrollView
-              showsVerticalScrollIndicator={false}
-              // contentContainerStyle={{ height: "100%" }}
-              // refreshControl={
-              //   <RefreshControl
-              //     refreshing={refresh}
-              //     onRefresh={fetchCoins}
-              //     colors={["#236AF3"]}
-              //   />
-              // }
-            >
+            <ScrollView showsVerticalScrollIndicator={false}>
               {trendingCoins &&
                 trendingCoins.map((coin, i) => (
                   <Compare
+                    id={coin.id}
                     image={coin.logo}
                     name={
                       coin.label.length > 9
@@ -324,7 +312,7 @@ const styles = StyleSheet.create({
     borderColor: "gray",
     borderRadius: 4,
     color: "black",
-    paddingRight: 30, // to ensure the text is never behind the icon
+    paddingRight: 30,
   },
 });
 const pickerSelectStyles = StyleSheet.create({

@@ -18,15 +18,16 @@ const Compare = ({
   return (
     <>
       <View
+        key={id}
         style={{
-          marginVertical: "3%",
+          marginVertical: "4%",
           flexDirection: "row",
           justifyContent: "space-between",
         }}
       >
         <View
           style={{
-            width: "30%",
+            width: "42%",
             // alignItems: "center",
             // justifyContent: "center",
             flexDirection: "row",
@@ -59,8 +60,8 @@ const Compare = ({
         </View>
         <View
           style={{
-            width: "30%",
-            alignItems: "center",
+            width: "31%",
+            // alignItems: "center",
             justifyContent: "center",
           }}
         >
@@ -76,7 +77,7 @@ const Compare = ({
         <View
           style={{
             width: "30%",
-            alignItems: "center",
+            // alignItems: "flex-end",
             justifyContent: "center",
           }}
         >

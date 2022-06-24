@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "Crypto Hunter",
-    "slug": "crypto-hunter",
+    "name": "Cryp Two",
+    "slug": "Cryp-Two",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/img/LOGOBLACK..png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/img/LOGOBLACK_.png",
@@ -20,14 +20,14 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/icon.png",
+        "foregroundImage": "./assets/img/LOGOBLACK..png",
         "backgroundColor": "#FFFFFF"
       },
       "softwareKeyboardLayoutMode": "pan",
       "package": "com.talha_farrukh.cryptohunter"
     },
     "web": {
-      "favicon": "./assets/icon.png"
+      "favicon": "./assets/img/LOGOBLACK..png"
     }
   }
 }
