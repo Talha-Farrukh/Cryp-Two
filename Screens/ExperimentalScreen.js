@@ -51,17 +51,15 @@ const ExperimentalScreen = () => {
       }}
     >
       <SafeAreaView>
-        <View>
-          <Text
-            style={{
-              color:
-                theme === "light" ? lightColor.fontColor : darkColor.fontColor,
-              paddingVertical: 35,
-              fontSize: Platform.OS === "android" ? 20 : 16,
-              alignSelf: "center",
-            }}
-          ></Text>
-        </View>
+        <View
+          style={{
+            color:
+              theme === "light" ? lightColor.fontColor : darkColor.fontColor,
+            marginTop: "20%",
+            fontSize: Platform.OS === "android" ? 20 : 16,
+            alignSelf: "center",
+          }}
+        />
 
         <View
           style={{
