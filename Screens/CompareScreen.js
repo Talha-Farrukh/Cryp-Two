@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { Platform, ScrollView, StyleSheet, Text, View } from "react-native";
 import RNPickerSelect from "react-native-picker-select";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { darkColor, lightColor } from "../Colors";
@@ -253,7 +253,7 @@ const CompareScreen = () => {
               />
             </View>
           </View>
-          <View style={{ height: "70%" }}>
+          <View style={{ height: Platform.OS === "android" ? "65%" : "70%" }}>
             <ScrollView showsVerticalScrollIndicator={false}>
               {trendingCoins &&
                 trendingCoins.map((coin, i) => (

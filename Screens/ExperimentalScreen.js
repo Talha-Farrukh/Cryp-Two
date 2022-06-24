@@ -6,6 +6,7 @@ import {
   SafeAreaView,
   ScrollView,
   StyleSheet,
+  Text,
   TouchableOpacity,
   View,
 } from "react-native";
@@ -24,7 +25,7 @@ const ExperimentalScreen = () => {
     const { data } = await axios
       .get(CoinList(currency))
       .then()
-      .catch((err) => console.log(err.message));
+      .catch((err) => console.log(err));
     setCoins(data);
   };
 
@@ -50,15 +51,17 @@ const ExperimentalScreen = () => {
       }}
     >
       <SafeAreaView>
-        <View
-          style={{
-            color:
-              theme === "light" ? lightColor.fontColor : darkColor.fontColor,
-            marginTop: "20%",
-            fontSize: Platform.OS === "android" ? 20 : 16,
-            alignSelf: "center",
-          }}
-        />
+        <View>
+          <Text
+            style={{
+              color:
+                theme === "light" ? lightColor.fontColor : darkColor.fontColor,
+              paddingVertical: 35,
+              fontSize: Platform.OS === "android" ? 20 : 16,
+              alignSelf: "center",
+            }}
+          ></Text>
+        </View>
 
         <View
           style={{

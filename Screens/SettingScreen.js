@@ -14,37 +14,6 @@ const SettingScreen = () => {
     state.isConnected ? setConnection(true) : setConnection(false);
   });
   const { currency, setCurrency } = CryptoState();
-  // const data = [
-  //   "usd",
-  //   "pkr",
-  //   "inr",
-  //   "eur",
-  //   "gbp",
-  //   "cad",
-  //   "aud",
-  //   "cny",
-  //   "rub",
-  //   "idr",
-  //   "mxn",
-  //   "ils",
-  //   "jpy",
-  //   "nzd",
-  //   "nok",
-  //   "sek",
-  //   "chf",
-  //   "sgd",
-  //   "thb",
-  //   "twd",
-  //   "zar",
-  //   "bgn",
-  //   "hkd",
-  //   "php",
-  //   "try",
-  //   "uah",
-  //   "czk",
-  //   "pln",
-  // ];
-
   const placeholder = {
     label: "USD",
     value: "usd",
@@ -183,46 +152,6 @@ const SettingScreen = () => {
               }}
               value={currency}
             />
-            {/* <SelectDropdown
-              data={data}
-              disabled={connection ? false : true}
-              onSelect={async (selectedItem) => {
-                setCurrency(selectedItem);
-                //currency saved to async storage logic
-                try {
-                  await AsyncStorage.setItem(
-                    "currency",
-                    JSON.stringify(selectedItem)
-                  );
-                } catch {
-                  (err) => console.log(err.message);
-                }
-              }}
-              defaultButtonText="Currency"
-              renderDropdownIcon={() => (
-                <AntDesign name="downcircleo" size={20} color="black" />
-              )}
-              buttonStyle={{
-                borderRadius: 20,
-                height: 40,
-                width: "37%",
-              }}
-              buttonTextStyle={{
-                fontSize: Platform.OS === "android" ? 17 : 13,
-                textTransform: "uppercase",
-              }}
-              statusBarTranslucent={true}
-              dropdownStyle={{
-                borderRadius: 20,
-              }}
-              // defaultValue={currency}
-              defaultValueByIndex={data.indexOf(currency)}
-              rowStyle={{ height: 40, width: "100%" }}
-              rowTextStyle={{
-                fontSize: Platform.OS === "android" ? 15 : 11,
-                textTransform: "uppercase",
-              }}
-            /> */}
           </View>
           <Divider
             style={{
