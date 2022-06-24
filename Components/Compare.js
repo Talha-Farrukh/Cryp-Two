@@ -66,31 +66,6 @@ const Compare = ({
             </Text>
           </View>
         </View>
-        <View
-          style={{
-            width: "31%",
-            // alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <Text
-            style={{
-              color:
-                theme === "light" ? lightColor.fontColor : darkColor.fontColor,
-              // fontWeight: "bold",
-            }}
-          >
-            {name}
-          </Text>
-          <Text
-            style={{
-              color:
-                theme === "light" ? lightColor.fontColor : darkColor.fontColor,
-            }}
-          >
-            {coinSymbol.toUpperCase()}
-          </Text>
-        </View>
       </View>
       <View
         style={{
