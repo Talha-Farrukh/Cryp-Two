@@ -24,7 +24,7 @@
         "backgroundColor": "#FFFFFF"
       },
       "softwareKeyboardLayoutMode": "pan",
-      "package": "com.talha_farrukh.cryptohunter"
+      "package": "com.talha_farrukh.cryptwo"
     },
     "web": {
       "favicon": "./assets/icon-black.jpg"

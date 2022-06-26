@@ -212,8 +212,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingTop: "4%",
-    paddingbottom: "4%",
+    paddingVertical: "3%",
     paddingHorizontal: "6%",
   },
 });
