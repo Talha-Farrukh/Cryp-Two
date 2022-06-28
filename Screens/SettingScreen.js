@@ -126,11 +126,14 @@ const SettingScreen = () => {
                 }}
                 style={{
                   inputIOS: {
+                    minWidth: "100%",
+                    minHeight: Platform.OS === "android" ? 50 : 40,
+                    fontSize: 14,
                     color:
                       theme === "light"
                         ? lightColor.fontColor
                         : darkColor.fontColor,
-                    fontSize: 16,
+                    // fontSize: 16,
                     textAlign: "center",
                     paddingVertical: 12,
                     paddingHorizontal: 10,
@@ -141,11 +144,14 @@ const SettingScreen = () => {
                     marginRight: 30,
                   },
                   inputAndroid: {
+                    minWidth: "100%",
+                    minHeight: Platform.OS === "android" ? 50 : 40,
+                    fontSize: 14,
                     color:
                       theme === "light"
                         ? lightColor.fontColor
                         : darkColor.fontColor,
-                    fontSize: 16,
+                    // fontSize: 16,
                     textAlign: "center",
                     paddingVertical: 12,
                     paddingHorizontal: 10,
