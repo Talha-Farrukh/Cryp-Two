@@ -1,6 +1,5 @@
 import { AntDesign } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import NetInfo from "@react-native-community/netinfo";
 import axios from "axios";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
@@ -22,15 +21,9 @@ import { CoinList } from "../config/api";
 import { CryptoState } from "../CryptoContext";
 
 const CoinListScreen = () => {
-  //Checking connection
-  const [connection, setConnection] = useState(true);
-  NetInfo.fetch().then((state) => {
-    state.isConnected ? setConnection(true) : setConnection(false);
-  });
-
   const [coins, setCoins] = useState();
   const [refresh, setRefresh] = useState(false);
-  const { currency } = CryptoState();
+  const { currency, connection } = CryptoState();
 
   //fectch data from api
   const fetchCoins = async () => {

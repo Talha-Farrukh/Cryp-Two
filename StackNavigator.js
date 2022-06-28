@@ -5,7 +5,6 @@ import {
 } from "@react-navigation/stack";
 import { useEffect, useState } from "react";
 import "react-native-gesture-handler";
-import { CryptoState } from "./CryptoContext";
 import CoinDetailsScreen from "./Screens/CoinDetailsScreen";
 import LandingScreen from "./Screens/LandingScreen";
 import TabNavigator from "./TabNavigator";
@@ -17,7 +16,6 @@ const StackNavigator = () => {
   const getingLanding = async () => {
     await AsyncStorage.getItem("landing")
       .then((v) => {
-        console.log(v);
         if (v !== null) {
           setLanding(v === "false" ? false : true);
         } else {

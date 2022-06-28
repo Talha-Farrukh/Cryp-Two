@@ -1,5 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import React, {
+import NetInfo from "@react-native-community/netinfo";
+import {
   createContext,
   useContext,
   useEffect,
@@ -11,6 +12,12 @@ import { Appearance } from "react-native";
 const Crypto = createContext();
 
 function CryptoContext({ children }) {
+  //Checking connection
+  const [connection, setConnection] = useState(true);
+  NetInfo.fetch().then((state) => {
+    state.isConnected ? setConnection(true) : setConnection(false);
+  });
+
   //getting currency initial value from async storage
   const asyncCurrency = () => {
     AsyncStorage.getItem("currency")
@@ -62,7 +69,9 @@ function CryptoContext({ children }) {
   }, [currency]);
 
   return (
-    <Crypto.Provider value={{ currency, symbol, setCurrency, theme, setTheme }}>
+    <Crypto.Provider
+      value={{ currency, symbol, setCurrency, theme, setTheme, connection }}
+    >
       {children}
     </Crypto.Provider>
   );

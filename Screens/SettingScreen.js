@@ -1,5 +1,4 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import NetInfo from "@react-native-community/netinfo";
 import { useEffect, useState } from "react";
 import { Platform, StyleSheet, Switch, Text, View } from "react-native";
 import { Divider } from "react-native-paper";
@@ -9,11 +8,7 @@ import { darkColor, lightColor } from "../Colors";
 import { CryptoState } from "../CryptoContext";
 
 const SettingScreen = () => {
-  const [connection, setConnection] = useState(true);
-  NetInfo.fetch().then((state) => {
-    state.isConnected ? setConnection(true) : setConnection(false);
-  });
-  const { currency, setCurrency } = CryptoState();
+  const { currency, setCurrency, connection } = CryptoState();
   const placeholder = {
     label: "USD",
     value: "usd",
@@ -111,6 +106,7 @@ const SettingScreen = () => {
             <View style={{ width: "30%" }}>
               <RNPickerSelect
                 placeholder={placeholder}
+                disabled={!connection}
                 items={data}
                 onValueChange={async (value) => {
                   setCurrency(value);
