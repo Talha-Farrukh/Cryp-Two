@@ -4,10 +4,10 @@
     "slug": "Cryp-Two",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon-black.jpg",
+    "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/img/LOGOBLACK_.png",
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffff"
     },
@@ -16,18 +16,19 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.faraz.cryptwo"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/icon-black.jpg",
+        "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#FFFFFF"
       },
       "softwareKeyboardLayoutMode": "pan",
       "package": "com.talha_farrukh.cryptwo"
     },
     "web": {
-      "favicon": "./assets/icon-black.jpg"
+      "favicon": "./assets/icon.png"
     }
   }
 }

@@ -22,18 +22,6 @@ import { CoinList } from "../config/api";
 import { CryptoState } from "../CryptoContext";
 
 const CoinListScreen = () => {
-  //function to set landing screen value
-  const setLandingValue = async () => {
-    await AsyncStorage.setItem("landing", JSON.stringify(false)).catch((err) =>
-      console.log(err)
-    );
-  };
-
-  //Saving landing value in async storage
-  useEffect(() => {
-    setLandingValue();
-  }, []);
-
   //Checking connection
   const [connection, setConnection] = useState(true);
   NetInfo.fetch().then((state) => {
