@@ -5,23 +5,26 @@ import {
 } from "@react-navigation/stack";
 import { useEffect, useState } from "react";
 import "react-native-gesture-handler";
+import { CryptoState } from "./CryptoContext";
 import CoinDetailsScreen from "./Screens/CoinDetailsScreen";
 import LandingScreen from "./Screens/LandingScreen";
 import TabNavigator from "./TabNavigator";
 
 const StackNavigator = () => {
   const Stack = createStackNavigator();
-  const [landing, setLanding] = useState();
+  const [landing, setLanding] = useState(true);
+
   const getingLanding = async () => {
-    try {
-      await AsyncStorage.getItem("landing").then((v) => {
+    await AsyncStorage.getItem("landing")
+      .then((v) => {
+        console.log(v);
         if (v !== null) {
           setLanding(v === "false" ? false : true);
+        } else {
+          setLanding(true);
         }
-      });
-    } catch {
-      (err) => console.log(err);
-    }
+      })
+      .catch((err) => console.log(err.message));
   };
 
   useEffect(() => {

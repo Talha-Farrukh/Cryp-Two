@@ -1,4 +1,5 @@
 import { Feather } from "@expo/vector-icons";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import {
@@ -11,6 +12,13 @@ import {
 } from "react-native";
 
 const LandingScreen = () => {
+  //function to set landing screen value
+  const setLandingValue = async () => {
+    await AsyncStorage.setItem("landing", JSON.stringify(false)).catch((err) =>
+      console.log(err)
+    );
+  };
+
   const navigation = useNavigation();
   const [loaded] = useFonts({
     Montserrat: require("../assets/Fonts/Montserrat-Light.ttf"),
@@ -21,7 +29,7 @@ const LandingScreen = () => {
   return (
     <View style={styles.container}>
       <Image
-        source={require("../assets/img/LOGOBLACK..png")}
+        source={require("../assets/img/Logo.png")}
         style={styles.img}
         resizeMode="contain"
       />
@@ -33,7 +41,10 @@ const LandingScreen = () => {
           flexDirection: "row",
           alignItems: "center",
         }}
-        onPress={() => navigation.replace("Root")}
+        onPress={() => {
+          navigation.replace("Root");
+          setLandingValue();
+        }}
       >
         <Text>{"Create Portfolio".toUpperCase()}</Text>
         <Feather name="arrow-up-right" size={24} color="black" />
