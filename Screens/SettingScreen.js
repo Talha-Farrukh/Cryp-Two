@@ -1,4 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import NetInfo from "@react-native-community/netinfo";
 import { useEffect, useState } from "react";
 import { Platform, StyleSheet, Switch, Text, View } from "react-native";
 import { Divider } from "react-native-paper";
@@ -8,7 +9,11 @@ import { darkColor, lightColor } from "../Colors";
 import { CryptoState } from "../CryptoContext";
 
 const SettingScreen = () => {
-  const { currency, setCurrency, connection } = CryptoState();
+  const [connection, setConnection] = useState(true);
+  NetInfo.fetch().then((state) => {
+    state.isConnected ? setConnection(true) : setConnection(false);
+  });
+  const { currency, setCurrency } = CryptoState();
   const placeholder = {
     label: "USD",
     value: "usd",
@@ -106,7 +111,6 @@ const SettingScreen = () => {
             <View style={{ width: "30%" }}>
               <RNPickerSelect
                 placeholder={placeholder}
-                disabled={!connection}
                 items={data}
                 onValueChange={async (value) => {
                   setCurrency(value);
@@ -122,9 +126,6 @@ const SettingScreen = () => {
                 }}
                 style={{
                   inputIOS: {
-                    minWidth: "100%",
-                    minHeight: Platform.OS === "android" ? 50 : 40,
-                    fontSize: 14,
                     color:
                       theme === "light"
                         ? lightColor.fontColor
@@ -137,70 +138,27 @@ const SettingScreen = () => {
                     borderColor: "gray",
                     borderRadius: 4,
                     width: "100%",
-                    marginRight: 30,
+                    // marginRight: 30,
                   },
                   inputAndroid: {
-                    minWidth: "100%",
-                    minHeight: Platform.OS === "android" ? 50 : 40,
-                    fontSize: 14,
                     color:
                       theme === "light"
                         ? lightColor.fontColor
                         : darkColor.fontColor,
                     // fontSize: 16,
-                    textAlign: "center",
-                    paddingVertical: 12,
-                    paddingHorizontal: 10,
-                    borderWidth: 1,
-                    borderColor: "gray",
-                    borderRadius: 4,
+                    // textAlign: "center",
+                    // paddingVertical: 12,
+                    // paddingHorizontal: 10,
+                    // borderWidth: 1,
+                    // borderColor: "gray",
+                    // borderRadius: 4,
                     width: "100%",
-                    marginRight: 30,
+                    // marginRight: 30,
                   },
                 }}
                 value={currency}
               />
             </View>
-            {/* <SelectDropdown
-              data={data}
-              disabled={connection ? false : true}
-              onSelect={async (selectedItem) => {
-                setCurrency(selectedItem);
-                //currency saved to async storage logic
-                try {
-                  await AsyncStorage.setItem(
-                    "currency",
-                    JSON.stringify(selectedItem)
-                  );
-                } catch {
-                  (err) => console.log(err.message);
-                }
-              }}
-              defaultButtonText="Currency"
-              renderDropdownIcon={() => (
-                <AntDesign name="downcircleo" size={20} color="black" />
-              )}
-              buttonStyle={{
-                borderRadius: 20,
-                height: 40,
-                width: "37%",
-              }}
-              buttonTextStyle={{
-                fontSize: Platform.OS === "android" ? 17 : 13,
-                textTransform: "uppercase",
-              }}
-              statusBarTranslucent={true}
-              dropdownStyle={{
-                borderRadius: 20,
-              }}
-              // defaultValue={currency}
-              defaultValueByIndex={data.indexOf(currency)}
-              rowStyle={{ height: 40, width: "100%" }}
-              rowTextStyle={{
-                fontSize: Platform.OS === "android" ? 15 : 11,
-                textTransform: "uppercase",
-              }}
-            /> */}
           </View>
           <Divider
             style={{

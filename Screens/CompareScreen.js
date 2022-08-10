@@ -233,26 +233,26 @@ const CompareScreen = () => {
                     borderWidth: 1,
                     borderColor: "gray",
                     borderRadius: 4,
-                    width: "100%",
-                    marginRight: 30,
+                    // width: "100%",
+                    // marginRight: 30,
                   },
                   inputAndroid: {
-                    minWidth: "100%",
+                    // minWidth: "100%",
                     minHeight: Platform.OS === "android" ? 50 : 40,
-                    fontSize: 14,
+                    // fontSize: 14,
                     color:
                       theme === "light"
                         ? lightColor.fontColor
                         : darkColor.fontColor,
                     // fontSize: 16,
-                    textAlign: "center",
-                    paddingVertical: 12,
-                    paddingHorizontal: 10,
-                    borderWidth: 1,
-                    borderColor: "gray",
-                    borderRadius: 4,
+                    // textAlign: "center",
+                    // paddingVertical: 12,
+                    // paddingHorizontal: 10,
+                    // borderWidth: 1,
+                    // borderColor: "gray",
+                    // borderRadius: 4,
                     width: "100%",
-                    marginRight: 30,
+                    // marginRight: 30,
                   },
                 }}
                 value={selectedCurrency}
